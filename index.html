@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Comercial · 03/04 – 10/04</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F4F0;
+    --surface: #FFFFFF;
+    --surface2: #EEECEA;
+    --border: #E0DDD8;
+    --text: #1A1916;
+    --text2: #6B6860;
+    --text3: #9E9C98;
+    --blue: #2563EB;
+    --blue-bg: #EFF4FF;
+    --blue-text: #1D4ED8;
+    --green: #16A34A;
+    --green-bg: #F0FDF4;
+    --green-text: #15803D;
+    --amber: #D97706;
+    --amber-bg: #FFFBEB;
+    --amber-text: #B45309;
+    --red: #DC2626;
+    --red-bg: #FEF2F2;
+    --red-text: #B91C1C;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 32px 24px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-title {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+  }
+
+  .page-period {
+    font-size: 13px;
+    color: var(--text2);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 12px;
+  }
+
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .metric-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    color: var(--text3);
+    font-weight: 500;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .metric-value {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 6px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .badge-warn { background: var(--amber-bg); color: var(--amber-text); }
+  .badge-ok   { background: var(--green-bg); color: var(--green-text); }
+  .badge-bad  { background: var(--red-bg); color: var(--red-text); }
+  .badge-info { background: var(--blue-bg); color: var(--blue-text); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .card-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text2);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .person-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .person-row:last-child { border-bottom: none; }
+
+  .person-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .av-blue   { background: #DBEAFE; color: #1E40AF; }
+  .av-teal   { background: #CCFBF1; color: #0F766E; }
+  .av-amber  { background: #FEF3C7; color: #92400E; }
+
+  .person-meta {
+    text-align: right;
+  }
+
+  .person-nums {
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'DM Mono', monospace;
+    margin-bottom: 4px;
+  }
+
+  .person-nums span {
+    font-weight: 400;
+    color: var(--text3);
+    font-size: 11px;
+  }
+
+  .progress-bg {
+    background: var(--surface2);
+    border-radius: 3px;
+    height: 5px;
+    overflow: hidden;
+    margin-bottom: 4px;
+    width: 120px;
+    margin-left: auto;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+
+  .prog-ok   { background: var(--green); }
+  .prog-warn { background: var(--amber); }
+  .prog-bad  { background: var(--red); }
+
+  .insight-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 15px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .insight-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  .dot-bad  { background: var(--red); }
+  .dot-warn { background: var(--amber); }
+  .dot-ok   { background: var(--green); }
+  .dot-info { background: var(--blue); }
+
+  .abordagens-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .abordagens-num {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    font-family: 'DM Mono', monospace;
+    line-height: 1;
+  }
+
+  .abordagens-meta {
+    font-size: 12px;
+    color: var(--text3);
+  }
+
+  .progress-bg-full {
+    background: var(--surface2);
+    border-radius: 3px;
+    height: 8px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 640px) {
+    .metric-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .progress-bg { width: 80px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <div class="page-title">Dashboard Comercial</div>
+    <div class="page-period">03/04/2025 – 10/04/2025</div>
+  </div>
+</div>
+
+<div class="section-label">Visão geral</div>
+<div class="metric-grid">
+  <div class="metric-card">
+    <div class="metric-label">Reuniões agendadas</div>
+    <div class="metric-value">25</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-label">Reuniões realizadas</div>
+    <div class="metric-value">15</div>
+    <span class="badge badge-warn">60% das agendadas</span>
+  </div>
+  <div class="metric-card">
+    <div class="metric-label">No-show geral</div>
+    <div class="metric-value">40%</div>
+    <span class="badge badge-bad">meta: 30%</span>
+  </div>
+  <div class="metric-card">
+    <div class="metric-label">Vendas na semana</div>
+    <div class="metric-value">3</div>
+  </div>
+</div>
+
+<hr class="divider">
+<div class="section-label">SDRs · agendamentos e abordagens</div>
+<div class="two-col">
+  <div class="card">
+    <div class="card-title">Agendamentos</div>
+    <div class="person-row">
+      <div class="person-info">
+        <div class="avatar av-amber">MA</div>
+        Mayara
+      </div>
+      <div class="person-meta">
+        <div class="person-nums">6 <span>/ meta 10</span></div>
+        <div class="progress-bg"><div class="progress-fill prog-warn" style="width:60%"></div></div>
+        <span class="badge badge-warn">60% da meta</span>
+      </div>
+    </div>
+    <div class="person-row">
+      <div class="person-info">
+        <div class="avatar av-teal">AL</div>
+        Aline
+      </div>
+      <div class="person-meta">
+        <div class="person-nums">9 <span>/ meta 30</span></div>
+        <div class="progress-bg"><div class="progress-fill prog-bad" style="width:30%"></div></div>
+        <span class="badge badge-bad">30% da meta</span>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Abordagens · Mayara</div>
+    <div class="abordagens-card">
+      <div>
+        <div class="abordagens-num">439 <span style="font-size:14px;color:var(--text3);font-weight:400;">/ 600</span></div>
+        <div class="abordagens-meta">meta semanal</div>
+      </div>
+      <div class="progress-bg-full">
+        <div class="progress-fill prog-warn" style="width:73%"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <span class="badge badge-warn">73% da meta</span>
+        <span style="font-size:11px;color:var(--text3);">faltam 161</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+<div class="section-label">Closers · reuniões e vendas</div>
+<div class="two-col">
+  <div class="card">
+    <div class="card-title">Reuniões realizadas na semana</div>
+    <div class="person-row">
+      <div class="person-info">
+        <div class="avatar av-blue">OT</div>
+        Otávio
+      </div>
+      <div class="person-meta">
+        <div class="person-nums">10 <span>/ meta 25</span></div>
+        <div class="progress-bg"><div class="progress-fill prog-bad" style="width:40%"></div></div>
+        <span class="badge badge-bad">40% da meta</span>
+      </div>
+    </div>
+    <div class="person-row">
+      <div class="person-info">
+        <div class="avatar av-teal">VA</div>
+        Vanessa
+      </div>
+      <div class="person-meta">
+        <div class="person-nums">5 <span>/ meta 5</span></div>
+        <div class="progress-bg"><div class="progress-fill prog-ok" style="width:100%"></div></div>
+        <span class="badge badge-ok">100% da meta</span>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Vendas no mês</div>
+    <div class="person-row">
+      <div class="person-info">
+        <div class="avatar av-blue">OT</div>
+        Otávio
+      </div>
+      <div class="person-meta">
+        <div class="person-nums">3 <span>/ meta 28</span></div>
+        <div class="progress-bg"><div class="progress-fill prog-bad" style="width:11%"></div></div>
+        <span class="badge badge-bad">11% da meta</span>
+      </div>
+    </div>
+    <div class="person-row">
+      <div class="person-info">
+        <div class="avatar av-teal">VA</div>
+        Vanessa
+      </div>
+      <div class="person-meta">
+        <div class="person-nums">0 <span>/ meta 2</span></div>
+        <div class="progress-bg"><div class="progress-fill prog-bad" style="width:0%"></div></div>
+        <span class="badge badge-bad">0% da meta</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+<div class="section-label">Insights comerciais</div>
+
+<div class="insight-box">
+  <div class="insight-dot dot-bad"></div>
+  <div><strong>No-show acima da meta:</strong> 40% na semana contra meta de 30%. Revisar processo de confirmação pré-reunião — ligação 24h antes + lembrete 2h antes tende a reduzir consideravelmente o índice.</div>
+</div>
+<div class="insight-box">
+  <div class="insight-dot dot-bad"></div>
+  <div><strong>Otávio em 11% da meta mensal de vendas</strong> com 3 fechamentos. O ritmo atual não sustenta os 28 do mês — prioridade em aumentar volume de reuniões realizadas.</div>
+</div>
+<div class="insight-box">
+  <div class="insight-dot dot-ok"></div>
+  <div><strong>Vanessa bateu a meta semanal de reuniões</strong> (5/5). Meta de vendas do mês ainda em aberto (0/2) — acompanhar conversão nas próximas reuniões.</div>
+</div>
+<div class="insight-box">
+  <div class="insight-dot dot-warn"></div>
+  <div><strong>Meta de Aline é muito agressiva:</strong> 30 agendamentos por semana representa mais que o triplo do entregue (9). Vale calibrar a meta com a realidade do público que ela trabalha.</div>
+</div>
+
+</body>
+</html>
