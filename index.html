@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Comercial · 03/04 – 10/04</title>
+<title>Dashboard Comercial · Abril 2025</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -27,243 +27,105 @@
     --red-bg: #FEF2F2;
     --red-text: #B91C1C;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.5; padding: 32px 24px; max-width: 980px; margin: 0 auto; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 14px;
-    line-height: 1.5;
-    padding: 32px 24px;
-    max-width: 960px;
-    margin: 0 auto;
-  }
+  .page-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .page-title { font-size: 22px; font-weight: 600; letter-spacing: -0.5px; }
+  .page-sub { font-size: 13px; color: var(--text2); font-family: 'DM Mono', monospace; }
 
-  .page-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-  }
+  .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 28px; }
+  .tab { padding: 10px 20px; font-size: 13px; font-weight: 500; color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; white-space: nowrap; }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--text); border-bottom-color: var(--blue); }
 
-  .page-title {
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-  }
+  .pane { display: none; }
+  .pane.active { display: block; }
 
-  .page-period {
-    font-size: 13px;
-    color: var(--text2);
-    font-family: 'DM Mono', monospace;
-  }
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 12px; margin-top: 24px; }
+  .section-label:first-child { margin-top: 0; }
 
-  .section-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text3);
-    margin-bottom: 12px;
-  }
+  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+  .metric-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+  .metric-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .metric-label { font-size: 11px; color: var(--text3); font-weight: 500; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .metric-value { font-size: 24px; font-weight: 600; letter-spacing: -1px; line-height: 1; margin-bottom: 6px; font-family: 'DM Mono', monospace; }
+  .metric-sub { font-size: 11px; color: var(--text2); margin-top: 4px; }
 
-  .metric-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 24px;
-  }
-
-  .metric-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-  }
-
-  .metric-label {
-    font-size: 11px;
-    color: var(--text3);
-    font-weight: 500;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .metric-value {
-    font-size: 26px;
-    font-weight: 600;
-    letter-spacing: -1px;
-    line-height: 1;
-    margin-bottom: 6px;
-    font-family: 'DM Mono', monospace;
-  }
-
-  .badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 500;
-    padding: 2px 8px;
-    border-radius: 20px;
-  }
+  .badge { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; }
   .badge-warn { background: var(--amber-bg); color: var(--amber-text); }
   .badge-ok   { background: var(--green-bg); color: var(--green-text); }
   .badge-bad  { background: var(--red-bg); color: var(--red-text); }
   .badge-info { background: var(--blue-bg); color: var(--blue-text); }
 
-  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .delta-up-good { color: var(--green-text); font-size: 11px; }
+  .delta-down-good { color: var(--green-text); font-size: 11px; }
+  .delta-up-bad { color: var(--red-text); font-size: 11px; }
 
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
+  hr.divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
 
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-  }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .card-title { font-size: 11px; font-weight: 600; color: var(--text2); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.05em; }
 
-  .card-title {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text2);
-    margin-bottom: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .person-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-  }
+  .person-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); }
   .person-row:last-child { border-bottom: none; }
-
-  .person-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 13px;
-    font-weight: 500;
-  }
-
-  .avatar {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-  .av-blue   { background: #DBEAFE; color: #1E40AF; }
-  .av-teal   { background: #CCFBF1; color: #0F766E; }
-  .av-amber  { background: #FEF3C7; color: #92400E; }
-
-  .person-meta {
-    text-align: right;
-  }
-
-  .person-nums {
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'DM Mono', monospace;
-    margin-bottom: 4px;
-  }
-
-  .person-nums span {
-    font-weight: 400;
-    color: var(--text3);
-    font-size: 11px;
-  }
-
-  .progress-bg {
-    background: var(--surface2);
-    border-radius: 3px;
-    height: 5px;
-    overflow: hidden;
-    margin-bottom: 4px;
-    width: 120px;
-    margin-left: auto;
-  }
-
-  .progress-fill {
-    height: 100%;
-    border-radius: 3px;
-    transition: width 0.6s ease;
-  }
-
+  .person-info { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; flex: 1; }
+  .avatar { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; flex-shrink: 0; }
+  .av-blue  { background: #DBEAFE; color: #1E40AF; }
+  .av-teal  { background: #CCFBF1; color: #0F766E; }
+  .av-amber { background: #FEF3C7; color: #92400E; }
+  .person-meta { text-align: right; }
+  .person-nums { font-size: 13px; font-weight: 600; font-family: 'DM Mono', monospace; margin-bottom: 5px; }
+  .person-nums span { font-weight: 400; color: var(--text3); font-size: 11px; }
+  .prog-wrap { width: 120px; margin-left: auto; }
+  .prog-bg { background: var(--surface2); border-radius: 3px; height: 5px; overflow: hidden; margin-bottom: 5px; }
+  .prog-fill { height: 100%; border-radius: 3px; }
   .prog-ok   { background: var(--green); }
   .prog-warn { background: var(--amber); }
   .prog-bad  { background: var(--red); }
 
-  .insight-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 13px 15px;
-    margin-bottom: 8px;
-    font-size: 13px;
-    line-height: 1.6;
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-  }
+  .abord-num { font-size: 26px; font-weight: 600; letter-spacing: -1px; font-family: 'DM Mono', monospace; line-height: 1; margin-bottom: 6px; }
+  .abord-lbl { font-size: 11px; color: var(--text2); margin-bottom: 10px; }
+  .prog-bg-full { background: var(--surface2); border-radius: 3px; height: 8px; overflow: hidden; margin-bottom: 8px; }
 
-  .insight-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    margin-top: 5px;
-  }
-  .dot-bad  { background: var(--red); }
+  .comp-header { display: flex; justify-content: flex-end; margin-bottom: 4px; font-size: 10px; color: var(--text3); font-family: 'DM Mono', monospace; }
+  .comp-header span { width: 64px; text-align: right; }
+  .comp-header span:last-child { width: 56px; }
+  .comp-row { display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-label { flex: 1; color: var(--text2); }
+  .comp-val { width: 64px; text-align: right; font-family: 'DM Mono', monospace; }
+  .comp-val.prev { color: var(--text3); font-size: 11px; }
+  .comp-val.curr { font-weight: 600; }
+  .comp-delta { width: 56px; text-align: right; font-size: 11px; font-weight: 600; font-family: 'DM Mono', monospace; }
+  .d-up-good { color: var(--green-text); }
+  .d-down-good { color: var(--green-text); }
+  .d-up-bad { color: var(--red-text); }
+  .d-neutral { color: var(--text3); }
+
+  .insight { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; font-size: 13px; line-height: 1.6; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+  .dot-ok { background: var(--green); }
   .dot-warn { background: var(--amber); }
-  .dot-ok   { background: var(--green); }
-  .dot-info { background: var(--blue); }
+  .dot-bad { background: var(--red); }
 
-  .abordagens-card {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+  .resumo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+  .rv { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .rv-val { font-size: 26px; font-weight: 600; letter-spacing: -1px; font-family: 'DM Mono', monospace; line-height: 1; }
+  .rv-lbl { font-size: 11px; color: var(--text2); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
 
-  .abordagens-num {
-    font-size: 28px;
-    font-weight: 600;
-    letter-spacing: -1px;
-    font-family: 'DM Mono', monospace;
-    line-height: 1;
-  }
+  .meta-bar-wrap { margin-top: 10px; }
+  .meta-big { font-size: 28px; font-weight: 600; letter-spacing: -1px; font-family: 'DM Mono', monospace; line-height: 1; margin-bottom: 4px; }
+  .meta-lbl { font-size: 12px; color: var(--text2); margin-bottom: 10px; }
+  .meta-prog { background: var(--surface2); border-radius: 4px; height: 10px; overflow: hidden; margin-bottom: 8px; }
 
-  .abordagens-meta {
-    font-size: 12px;
-    color: var(--text3);
-  }
-
-  .progress-bg-full {
-    background: var(--surface2);
-    border-radius: 3px;
-    height: 8px;
-    overflow: hidden;
-  }
-
-  @media (max-width: 640px) {
-    .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 680px) {
+    .metric-grid, .metric-grid-3 { grid-template-columns: repeat(2, 1fr); }
     .two-col { grid-template-columns: 1fr; }
-    .progress-bg { width: 80px; }
+    .resumo-grid { grid-template-columns: repeat(2, 1fr); }
+    .tab { padding: 8px 12px; font-size: 12px; }
+    .prog-wrap { width: 90px; }
   }
 </style>
 </head>
@@ -272,152 +134,282 @@
 <div class="page-header">
   <div>
     <div class="page-title">Dashboard Comercial</div>
-    <div class="page-period">03/04/2025 – 10/04/2025</div>
+    <div class="page-sub">Abril 2025 · Semanas 1 e 2</div>
   </div>
 </div>
 
-<div class="section-label">Visão geral</div>
-<div class="metric-grid">
-  <div class="metric-card">
-    <div class="metric-label">Reuniões agendadas</div>
-    <div class="metric-value">25</div>
-  </div>
-  <div class="metric-card">
-    <div class="metric-label">Reuniões realizadas</div>
-    <div class="metric-value">15</div>
-    <span class="badge badge-warn">60% das agendadas</span>
-  </div>
-  <div class="metric-card">
-    <div class="metric-label">No-show geral</div>
-    <div class="metric-value">40%</div>
-    <span class="badge badge-bad">meta: 30%</span>
-  </div>
-  <div class="metric-card">
-    <div class="metric-label">Vendas na semana</div>
-    <div class="metric-value">3</div>
-  </div>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('s1')">Semana 1 · 03–10/04</div>
+  <div class="tab" onclick="showTab('s2')">Semana 2 · 11–17/04</div>
+  <div class="tab" onclick="showTab('comp')">Compilado + Comparativo</div>
 </div>
 
-<hr class="divider">
-<div class="section-label">SDRs · agendamentos e abordagens</div>
-<div class="two-col">
-  <div class="card">
-    <div class="card-title">Agendamentos</div>
-    <div class="person-row">
-      <div class="person-info">
-        <div class="avatar av-amber">MA</div>
-        Mayara
+<!-- ===== S1 ===== -->
+<div class="pane active" id="pane-s1">
+  <div class="section-label">Visão geral</div>
+  <div class="metric-grid">
+    <div class="metric-card"><div class="metric-label">Reuniões agendadas</div><div class="metric-value">25</div></div>
+    <div class="metric-card"><div class="metric-label">Reuniões realizadas</div><div class="metric-value">15</div><div class="metric-sub"><span class="badge badge-warn">60% das agend.</span></div></div>
+    <div class="metric-card"><div class="metric-label">No-show geral</div><div class="metric-value">40%</div><div class="metric-sub"><span class="badge badge-bad">meta: 30%</span></div></div>
+    <div class="metric-card"><div class="metric-label">Vendas brutas</div><div class="metric-value">3</div><div class="metric-sub"><span class="badge badge-bad">1 cancelamento</span></div></div>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-card"><div class="metric-label">Vendas líquidas</div><div class="metric-value">2</div><div class="metric-sub">R$54.000</div></div>
+    <div class="metric-card"><div class="metric-label">Cancelamentos</div><div class="metric-value">1</div><div class="metric-sub"><span style="color:var(--red-text);font-size:11px;">-R$27.000 (Otávio)</span></div></div>
+    <div class="metric-card"><div class="metric-label">Agend. Mayara</div><div class="metric-value">6</div><div class="metric-sub"><span class="badge badge-warn">60% meta</span></div></div>
+    <div class="metric-card"><div class="metric-label">Agend. Aline</div><div class="metric-value">9</div><div class="metric-sub"><span class="badge badge-bad">30% meta</span></div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">SDRs</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Agendamentos</div>
+      <div class="person-row">
+        <div class="person-info"><div class="avatar av-amber">MA</div>Mayara</div>
+        <div class="person-meta">
+          <div class="person-nums">6 <span>/ meta 10</span></div>
+          <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill prog-warn" style="width:60%"></div></div></div>
+          <span class="badge badge-warn">60% da meta</span>
+        </div>
       </div>
-      <div class="person-meta">
-        <div class="person-nums">6 <span>/ meta 10</span></div>
-        <div class="progress-bg"><div class="progress-fill prog-warn" style="width:60%"></div></div>
-        <span class="badge badge-warn">60% da meta</span>
+      <div class="person-row">
+        <div class="person-info"><div class="avatar av-teal">AL</div>Aline</div>
+        <div class="person-meta">
+          <div class="person-nums">9 <span>/ meta 30</span></div>
+          <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill prog-bad" style="width:30%"></div></div></div>
+          <span class="badge badge-bad">30% da meta</span>
+        </div>
       </div>
     </div>
-    <div class="person-row">
-      <div class="person-info">
-        <div class="avatar av-teal">AL</div>
-        Aline
+    <div class="card">
+      <div class="card-title">Abordagens · Mayara</div>
+      <div class="abord-num">439 <span style="font-size:14px;color:var(--text2);font-weight:400;">/ 600</span></div>
+      <div class="abord-lbl">meta semanal</div>
+      <div class="prog-bg-full"><div class="prog-fill prog-warn" style="width:73%"></div></div>
+      <span class="badge badge-warn">73% da meta</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">Closers</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Reuniões realizadas</div>
+      <div class="person-row">
+        <div class="person-info"><div class="avatar av-blue">OT</div>Otávio</div>
+        <div class="person-meta">
+          <div class="person-nums">10 <span>/ meta 25</span></div>
+          <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill prog-bad" style="width:40%"></div></div></div>
+          <span class="badge badge-bad">40% da meta</span>
+        </div>
       </div>
-      <div class="person-meta">
-        <div class="person-nums">9 <span>/ meta 30</span></div>
-        <div class="progress-bg"><div class="progress-fill prog-bad" style="width:30%"></div></div>
-        <span class="badge badge-bad">30% da meta</span>
+      <div class="person-row">
+        <div class="person-info"><div class="avatar av-teal">VA</div>Vanessa</div>
+        <div class="person-meta">
+          <div class="person-nums">5 <span>/ meta 5</span></div>
+          <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill prog-ok" style="width:100%"></div></div></div>
+          <span class="badge badge-ok">100% da meta</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Vendas no mês (após S1)</div>
+      <div class="person-row">
+        <div class="person-info"><div class="avatar av-blue">OT</div>Otávio</div>
+        <div class="person-meta">
+          <div class="person-nums">2 líq. <span style="color:var(--red-text);">-1 cancel.</span></div>
+          <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill prog-bad" style="width:7%"></div></div></div>
+          <span class="badge badge-bad">7% da meta (28)</span>
+        </div>
+      </div>
+      <div class="person-row">
+        <div class="person-info"><div class="avatar av-teal">VA</div>Vanessa</div>
+        <div class="person-meta">
+          <div class="person-nums">0 <span>/ meta 2</span></div>
+          <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill prog-bad" style="width:0%"></div></div></div>
+          <span class="badge badge-bad">0% da meta</span>
+        </div>
       </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-title">Abordagens · Mayara</div>
-    <div class="abordagens-card">
-      <div>
-        <div class="abordagens-num">439 <span style="font-size:14px;color:var(--text3);font-weight:400;">/ 600</span></div>
-        <div class="abordagens-meta">meta semanal</div>
+
+  <hr class="divider">
+  <div class="section-label">Insights</div>
+  <div class="insight"><div class="dot dot-bad"></div><div><strong>No-show em 40%:</strong> 10pp acima da meta de 30%. Semana com baixo comparecimento comprometeu os resultados de vendas.</div></div>
+  <div class="insight"><div class="dot dot-bad"></div><div><strong>1 cancelamento de R$27k (Otávio):</strong> impacta o faturamento líquido e a meta mensal — fecha a semana com apenas 2 vendas líquidas.</div></div>
+  <div class="insight"><div class="dot dot-ok"></div><div><strong>Vanessa bateu a meta semanal de reuniões</strong> (5/5).</div></div>
+  <div class="insight"><div class="dot dot-warn"></div><div><strong>SDRs abaixo da meta:</strong> Mayara em 60% e Aline em 30% dos agendamentos. Abordagens de Mayara em 73%.</div></div>
+</div>
+
+<!-- ===== S2 ===== -->
+<div class="pane" id="pane-s2">
+  <div class="section-label">Visão geral</div>
+  <div class="metric-grid">
+    <div class="metric-card"><div class="metric-label">Reuniões agendadas</div><div class="metric-value">32</div><div class="metric-sub"><span class="delta-up-good">↑ +7 vs S1</span></div></div>
+    <div class="metric-card"><div class="metric-label">Reuniões realizadas</div><div class="metric-value">21</div><div class="metric-sub"><span class="badge badge-warn">66% das agend.</span> <span class="delta-up-good">↑ +6</span></div></div>
+    <div class="metric-card"><div class="metric-label">No-show geral</div><div class="metric-value">34%</div><div class="metric-sub"><span class="badge badge-warn">meta: 30%</span> <span class="delta-down-good">↓ -6pp</span></div></div>
+    <div class="metric-card"><div class="metric-label">Vendas brutas</div><div class="metric-value">4</div><div class="metric-sub"><span class="badge badge-ok">0 cancelamentos</span></div></div>
+  </div>
+  <div class="metric-grid">
+    <div class="metric-card"><div class="metric-label">Vendas líquidas</div><div class="metric-value">4</div><div class="metric-sub">R$108.000 <span class="delta-up-good">↑ +2 vs S1</span></div></div>
+    <div class="metric-card"><div class="metric-label">Agend. Mayara</div><div class="metric-value">9</div><div class="metric-sub"><span class="badge badge-ok">90% meta</span> <span class="delta-up-good">↑ +3</span></div></div>
+    <div class="metric-card"><div class="metric-label">Agend. Aline</div><div class="metric-value">17</div><div class="metric-sub"><span class="badge badge-warn">57% meta</span> <span class="delta-up-good">↑ +8</span></div></div>
+    <div class="metric-card"><div class="metric-label">Agend. Vanessa</div><div class="metric-value">4</div><div class="metric-sub">agendamentos</div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">SDRs</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Agendamentos</div>
+      <div class="person-row">
+        <div class="person-info"><div class="avatar av-amber">MA</div>Mayara</div>
+        <div class="person-meta">
+          <div class="person-nums">9 <span>/ meta 10</span></div>
+          <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill prog-ok" style="width:90%"></div></div></div>
+          <span class="badge badge-ok">90% da meta</span>
+        </div>
       </div>
-      <div class="progress-bg-full">
-        <div class="progress-fill prog-warn" style="width:73%"></div>
+      <div class="person-row">
+        <div class="person-info"><div class="avatar av-teal">AL</div>Aline</div>
+        <div class="person-meta">
+          <div class="person-nums">17 <span>/ meta 30</span></div>
+          <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill prog-warn" style="width:57%"></div></div></div>
+          <span class="badge badge-warn">57% da meta</span>
+        </div>
       </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <span class="badge badge-warn">73% da meta</span>
-        <span style="font-size:11px;color:var(--text3);">faltam 161</span>
+      <div class="person-row">
+        <div class="person-info"><div class="avatar av-teal">VA</div>Vanessa</div>
+        <div class="person-meta">
+          <div class="person-nums">4 <span>agendamentos</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Abordagens · Mayara</div>
+      <div class="abord-num">540 <span style="font-size:14px;color:var(--text2);font-weight:400;">/ 600</span></div>
+      <div class="abord-lbl">meta semanal · <strong style="color:var(--green-text);">↑ +101 vs S1</strong></div>
+      <div class="prog-bg-full"><div class="prog-fill prog-ok" style="width:90%"></div></div>
+      <span class="badge badge-ok">90% da meta</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">Closers</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Reuniões realizadas</div>
+      <div class="person-row">
+        <div class="person-info"><div class="avatar av-blue">OT</div>Otávio</div>
+        <div class="person-meta">
+          <div class="person-nums">14 <span>/ meta 25</span></div>
+          <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill prog-warn" style="width:56%"></div></div></div>
+          <span class="badge badge-warn">56% da meta</span>
+        </div>
+      </div>
+      <div class="person-row">
+        <div class="person-info"><div class="avatar av-teal">VA</div>Vanessa</div>
+        <div class="person-meta">
+          <div class="person-nums">7 <span>/ meta 5</span></div>
+          <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill prog-ok" style="width:100%"></div></div></div>
+          <span class="badge badge-ok">140% da meta</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Vendas no mês (acumulado)</div>
+      <div class="person-row">
+        <div class="person-info"><div class="avatar av-blue">OT</div>Otávio</div>
+        <div class="person-meta">
+          <div class="person-nums">4 líq. <span>/ meta 28</span></div>
+          <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill prog-bad" style="width:14%"></div></div></div>
+          <span class="badge badge-bad">14% da meta</span>
+        </div>
+      </div>
+      <div class="person-row">
+        <div class="person-info"><div class="avatar av-teal">VA</div>Vanessa</div>
+        <div class="person-meta">
+          <div class="person-nums">2 <span>/ meta 2</span></div>
+          <div class="prog-wrap"><div class="prog-bg"><div class="prog-fill prog-ok" style="width:100%"></div></div></div>
+          <span class="badge badge-ok">100% ✓ meta batida</span>
+        </div>
       </div>
     </div>
   </div>
+
+  <hr class="divider">
+  <div class="section-label">Insights</div>
+  <div class="insight"><div class="dot dot-ok"></div><div><strong>Semana de evolução em todos os indicadores:</strong> mais reuniões, mais vendas, sem cancelamentos, no-show caindo e Vanessa batendo a meta mensal.</div></div>
+  <div class="insight"><div class="dot dot-ok"></div><div><strong>Mayara próxima da meta:</strong> 90% dos agendamentos e 90% das abordagens — grande salto vs S1 (60% e 73%).</div></div>
+  <div class="insight"><div class="dot dot-bad"></div><div><strong>Otávio em 14% da meta mensal:</strong> 4 líquidas de 28. O ritmo atual não sustenta o mês — necessário plano de aceleração.</div></div>
+  <div class="insight"><div class="dot dot-warn"></div><div><strong>Aline evoluiu mas ainda distante:</strong> 17 agendamentos vs meta de 30 (57%). Vale revisar calibração da meta.</div></div>
 </div>
 
-<hr class="divider">
-<div class="section-label">Closers · reuniões e vendas</div>
-<div class="two-col">
-  <div class="card">
-    <div class="card-title">Reuniões realizadas na semana</div>
-    <div class="person-row">
-      <div class="person-info">
-        <div class="avatar av-blue">OT</div>
-        Otávio
-      </div>
-      <div class="person-meta">
-        <div class="person-nums">10 <span>/ meta 25</span></div>
-        <div class="progress-bg"><div class="progress-fill prog-bad" style="width:40%"></div></div>
-        <span class="badge badge-bad">40% da meta</span>
-      </div>
+<!-- ===== COMPILADO ===== -->
+<div class="pane" id="pane-comp">
+  <div class="section-label">Acumulado S1 + S2</div>
+  <div class="resumo-grid">
+    <div class="rv"><div class="rv-val">57</div><div class="rv-lbl">reuniões realizadas</div></div>
+    <div class="rv"><div class="rv-val">37%</div><div class="rv-lbl">no-show médio</div></div>
+    <div class="rv"><div class="rv-val" style="color:var(--green);">7</div><div class="rv-lbl">vendas brutas</div></div>
+    <div class="rv"><div class="rv-val" style="color:var(--red);">1</div><div class="rv-lbl">cancelamento</div></div>
+    <div class="rv"><div class="rv-val">6</div><div class="rv-lbl">vendas líquidas</div></div>
+    <div class="rv"><div class="rv-val">R$162k</div><div class="rv-lbl">faturamento líquido</div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">Comparativo S1 → S2</div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="comp-header"><span>S1</span><span>S2</span><span>var.</span></div>
+    <div class="comp-row"><div class="comp-label">Reuniões agendadas</div><div class="comp-val prev">25</div><div class="comp-val curr">32</div><div class="comp-delta d-up-good">+7</div></div>
+    <div class="comp-row"><div class="comp-label">Reuniões realizadas</div><div class="comp-val prev">15</div><div class="comp-val curr">21</div><div class="comp-delta d-up-good">+6</div></div>
+    <div class="comp-row"><div class="comp-label">No-show geral</div><div class="comp-val prev">40%</div><div class="comp-val curr">34%</div><div class="comp-delta d-down-good">-6pp</div></div>
+    <div class="comp-row"><div class="comp-label">Vendas brutas</div><div class="comp-val prev">3</div><div class="comp-val curr">4</div><div class="comp-delta d-up-good">+1</div></div>
+    <div class="comp-row"><div class="comp-label">Cancelamentos</div><div class="comp-val prev">1</div><div class="comp-val curr">0</div><div class="comp-delta d-down-good">-1</div></div>
+    <div class="comp-row"><div class="comp-label">Vendas líquidas</div><div class="comp-val prev">2</div><div class="comp-val curr">4</div><div class="comp-delta d-up-good">+2</div></div>
+    <div class="comp-row"><div class="comp-label">Faturamento líq.</div><div class="comp-val prev">R$54k</div><div class="comp-val curr">R$108k</div><div class="comp-delta d-up-good">+100%</div></div>
+    <div class="comp-row"><div class="comp-label">Agendamentos Mayara</div><div class="comp-val prev">6</div><div class="comp-val curr">9</div><div class="comp-delta d-up-good">+50%</div></div>
+    <div class="comp-row"><div class="comp-label">Agendamentos Aline</div><div class="comp-val prev">9</div><div class="comp-val curr">17</div><div class="comp-delta d-up-good">+89%</div></div>
+    <div class="comp-row"><div class="comp-label">Abordagens Mayara</div><div class="comp-val prev">439</div><div class="comp-val curr">540</div><div class="comp-delta d-up-good">+23%</div></div>
+    <div class="comp-row"><div class="comp-label">Reuniões Otávio</div><div class="comp-val prev">10</div><div class="comp-val curr">14</div><div class="comp-delta d-up-good">+40%</div></div>
+    <div class="comp-row"><div class="comp-label">Reuniões Vanessa</div><div class="comp-val prev">5</div><div class="comp-val curr">7</div><div class="comp-delta d-up-good">+40%</div></div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">Metas mensais · acumulado</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Otávio · vendas no mês</div>
+      <div class="meta-big">4 <span style="font-size:16px;color:var(--text2);font-weight:400;">líq. / meta 28</span></div>
+      <div class="meta-lbl">5 brutas – 1 cancelamento</div>
+      <div class="meta-prog"><div class="prog-fill prog-bad" style="width:14%;height:100%;border-radius:4px;"></div></div>
+      <span class="badge badge-bad">14% da meta mensal</span>
     </div>
-    <div class="person-row">
-      <div class="person-info">
-        <div class="avatar av-teal">VA</div>
-        Vanessa
-      </div>
-      <div class="person-meta">
-        <div class="person-nums">5 <span>/ meta 5</span></div>
-        <div class="progress-bg"><div class="progress-fill prog-ok" style="width:100%"></div></div>
-        <span class="badge badge-ok">100% da meta</span>
-      </div>
+    <div class="card">
+      <div class="card-title">Vanessa · vendas no mês</div>
+      <div class="meta-big">2 <span style="font-size:16px;color:var(--text2);font-weight:400;">/ meta 2</span></div>
+      <div class="meta-lbl">Fechou na S2</div>
+      <div class="meta-prog"><div class="prog-fill prog-ok" style="width:100%;height:100%;border-radius:4px;"></div></div>
+      <span class="badge badge-ok">100% — meta batida ✓</span>
     </div>
   </div>
-  <div class="card">
-    <div class="card-title">Vendas no mês</div>
-    <div class="person-row">
-      <div class="person-info">
-        <div class="avatar av-blue">OT</div>
-        Otávio
-      </div>
-      <div class="person-meta">
-        <div class="person-nums">3 <span>/ meta 28</span></div>
-        <div class="progress-bg"><div class="progress-fill prog-bad" style="width:11%"></div></div>
-        <span class="badge badge-bad">11% da meta</span>
-      </div>
-    </div>
-    <div class="person-row">
-      <div class="person-info">
-        <div class="avatar av-teal">VA</div>
-        Vanessa
-      </div>
-      <div class="person-meta">
-        <div class="person-nums">0 <span>/ meta 2</span></div>
-        <div class="progress-bg"><div class="progress-fill prog-bad" style="width:0%"></div></div>
-        <span class="badge badge-bad">0% da meta</span>
-      </div>
-    </div>
-  </div>
+
+  <hr class="divider">
+  <div class="section-label">Insights consolidados</div>
+  <div class="insight"><div class="dot dot-ok"></div><div><strong>Tendência positiva em tudo:</strong> mais reuniões, mais vendas, sem cancelamentos na S2, faturamento dobrou e no-show caindo de 40% para 34%.</div></div>
+  <div class="insight"><div class="dot dot-ok"></div><div><strong>Vanessa bateu a meta mensal na S2</strong> e vem superando a meta semanal de reuniões. Destaque do período.</div></div>
+  <div class="insight"><div class="dot dot-ok"></div><div><strong>Mayara evoluiu de 60% para 90%</strong> nos agendamentos e de 73% para 90% nas abordagens. Evolução consistente semana a semana.</div></div>
+  <div class="insight"><div class="dot dot-bad"></div><div><strong>Otávio precisa de atenção:</strong> 4 vendas líquidas de 28 na meta mensal (14%). O cancelamento da S1 agravou a situação. Ritmo atual não sustenta o mês.</div></div>
+  <div class="insight"><div class="dot dot-warn"></div><div><strong>No-show ainda acima da meta:</strong> média de 37% nas duas semanas vs meta de 30%. Caindo, mas ainda há espaço de melhora no processo de confirmação.</div></div>
+  <div class="insight"><div class="dot dot-warn"></div><div><strong>Meta de Aline segue agressiva:</strong> evoluiu de 30% para 57%, mas ainda distante dos 30 agendamentos semanais. Vale calibrar com a realidade do público que ela trabalha.</div></div>
 </div>
 
-<hr class="divider">
-<div class="section-label">Insights comerciais</div>
-
-<div class="insight-box">
-  <div class="insight-dot dot-bad"></div>
-  <div><strong>No-show acima da meta:</strong> 40% na semana contra meta de 30%. Revisar processo de confirmação pré-reunião — ligação 24h antes + lembrete 2h antes tende a reduzir consideravelmente o índice.</div>
-</div>
-<div class="insight-box">
-  <div class="insight-dot dot-bad"></div>
-  <div><strong>Otávio em 11% da meta mensal de vendas</strong> com 3 fechamentos. O ritmo atual não sustenta os 28 do mês — prioridade em aumentar volume de reuniões realizadas.</div>
-</div>
-<div class="insight-box">
-  <div class="insight-dot dot-ok"></div>
-  <div><strong>Vanessa bateu a meta semanal de reuniões</strong> (5/5). Meta de vendas do mês ainda em aberto (0/2) — acompanhar conversão nas próximas reuniões.</div>
-</div>
-<div class="insight-box">
-  <div class="insight-dot dot-warn"></div>
-  <div><strong>Meta de Aline é muito agressiva:</strong> 30 agendamentos por semana representa mais que o triplo do entregue (9). Vale calibrar a meta com a realidade do público que ela trabalha.</div>
-</div>
-
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', ['s1','s2','comp'][i] === id));
+  document.querySelectorAll('.pane').forEach(p => p.classList.toggle('active', p.id === 'pane-' + id));
+}
+</script>
 </body>
 </html>
