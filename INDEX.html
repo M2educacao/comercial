@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Comercial · Abril 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root{--bg:#F5F4F0;--surface:#FFFFFF;--surface2:#EEECEA;--border:#E0DDD8;--text:#1A1916;--text2:#6B6860;--text3:#9E9C98;--blue:#2563EB;--blue-bg:#EFF4FF;--blue-text:#1D4ED8;--green:#16A34A;--green-bg:#F0FDF4;--green-text:#15803D;--amber:#D97706;--amber-bg:#FFFBEB;--amber-text:#B45309;--red:#DC2626;--red-bg:#FEF2F2;--red-text:#B91C1C;--purple:#7C3AED;--purple-bg:#F5F3FF;--purple-text:#6D28D9;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;padding:32px 24px;max-width:980px;margin:0 auto;}
+  .page-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+  .page-title{font-size:22px;font-weight:600;letter-spacing:-0.5px;}
+  .page-sub{font-size:13px;color:var(--text2);font-family:'DM Mono',monospace;}
+  .tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:28px;overflow-x:auto;}
+  .tab{padding:10px 18px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;white-space:nowrap;flex-shrink:0;}
+  .tab:hover{color:var(--text);}.tab.active{color:var(--text);border-bottom-color:var(--blue);}
+  .pane{display:none;}.pane.active{display:block;}
+  .sl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;margin-top:24px;}
+  .sl:first-child{margin-top:0;}
+  .mg4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
+  .mg3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+  .mg6{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:20px;}
+  .mc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;}
+  .mc.hi{border-color:#A7F3D0;background:#F0FDF4;}
+  .ml{font-size:11px;color:var(--text3);font-weight:500;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;}
+  .mv{font-size:24px;font-weight:600;letter-spacing:-1px;line-height:1;margin-bottom:6px;font-family:'DM Mono',monospace;}
+  .ms{font-size:11px;color:var(--text2);margin-top:4px;}
+  .badge{display:inline-block;font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;}
+  .badge-warn{background:var(--amber-bg);color:var(--amber-text);}
+  .badge-ok{background:var(--green-bg);color:var(--green-text);}
+  .badge-bad{background:var(--red-bg);color:var(--red-text);}
+  .badge-info{background:var(--blue-bg);color:var(--blue-text);}
+  .badge-purple{background:var(--purple-bg);color:var(--purple-text);}
+  .ug{color:var(--green-text);font-size:11px;}.dg{color:var(--green-text);font-size:11px;}.ub{color:var(--red-text);font-size:11px;}
+  hr.d{border:none;border-top:1px solid var(--border);margin:24px 0;}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+  .three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;}
+  .ct{font-size:11px;font-weight:600;color:var(--text2);margin-bottom:14px;text-transform:uppercase;letter-spacing:.05em;}
+  .pr{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);}
+  .pr:last-child{border-bottom:none;}
+  .pi{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:500;flex:1;}
+  .av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;}
+  .av-blue{background:#DBEAFE;color:#1E40AF;}.av-teal{background:#CCFBF1;color:#0F766E;}.av-amber{background:#FEF3C7;color:#92400E;}
+  .pm{text-align:right;}
+  .pn{font-size:13px;font-weight:600;font-family:'DM Mono',monospace;margin-bottom:5px;}
+  .pn span{font-weight:400;color:var(--text3);font-size:11px;}
+  .pw{width:120px;margin-left:auto;}
+  .pb{background:var(--surface2);border-radius:3px;height:5px;overflow:hidden;margin-bottom:5px;}
+  .pf{height:100%;border-radius:3px;}
+  .pf-ok{background:var(--green);}.pf-warn{background:var(--amber);}.pf-bad{background:var(--red);}
+  .ins{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;font-size:13px;line-height:1.6;}
+  .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;}
+  .dot-ok{background:var(--green);}.dot-warn{background:var(--amber);}.dot-bad{background:var(--red);}.dot-info{background:var(--blue);}
+  /* noshow */
+  .nsg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
+  .nsc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;}
+  .nsv{font-size:28px;font-weight:600;font-family:'DM Mono',monospace;line-height:1;margin-bottom:4px;}
+  .nsl{font-size:11px;color:var(--text2);margin-bottom:10px;}
+  .nsp{background:var(--surface2);border-radius:3px;height:8px;overflow:hidden;margin-bottom:6px;}
+  /* comp table */
+  .ch{display:flex;justify-content:flex-end;margin-bottom:4px;font-size:10px;color:var(--text3);font-family:'DM Mono',monospace;}
+  .ch span{width:56px;text-align:right;}
+  .cr{display:flex;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:12px;}
+  .cr:last-child{border-bottom:none;}
+  .cl{flex:1;color:var(--text2);}
+  .cv{width:56px;text-align:right;font-family:'DM Mono',monospace;}
+  .cv.s1{color:var(--text3);font-size:11px;}.cv.s2{color:var(--text3);font-size:11px;}.cv.s3{font-weight:600;}
+  .cd{width:56px;text-align:right;font-size:11px;font-weight:600;font-family:'DM Mono',monospace;}
+  .dug{color:var(--green-text);}.ddg{color:var(--green-text);}.dub{color:var(--red-text);}.ddb{color:var(--red-text);}.dn{color:var(--text3);}
+  /* resume grid */
+  .rg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+  .rv{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;}
+  .rvv{font-size:26px;font-weight:600;letter-spacing:-1px;font-family:'DM Mono',monospace;line-height:1;}
+  .rvl{font-size:11px;color:var(--text2);margin-top:6px;text-transform:uppercase;letter-spacing:.05em;}
+  /* SDR abord */
+  .abn{font-size:26px;font-weight:600;letter-spacing:-1px;font-family:'DM Mono',monospace;line-height:1;margin-bottom:6px;}
+  .abl{font-size:11px;color:var(--text2);margin-bottom:10px;}
+  .abp{background:var(--surface2);border-radius:3px;height:8px;overflow:hidden;margin-bottom:8px;}
+  /* meta bar */
+  .mb-big{font-size:28px;font-weight:600;letter-spacing:-1px;font-family:'DM Mono',monospace;line-height:1;margin-bottom:4px;}
+  .mb-lbl{font-size:12px;color:var(--text2);margin-bottom:10px;}
+  .mb-prog{background:var(--surface2);border-radius:4px;height:10px;overflow:hidden;margin-bottom:8px;}
+  /* canal table */
+  .canal-header{display:grid;grid-template-columns:1fr 56px 56px 56px 64px;padding-bottom:8px;border-bottom:1px solid var(--border);font-size:10px;color:var(--text3);font-weight:600;letter-spacing:.05em;text-transform:uppercase;}
+  .canal-row{display:grid;grid-template-columns:1fr 56px 56px 56px 64px;padding:9px 0;border-bottom:1px solid var(--border);font-size:12px;align-items:center;}
+  .canal-row:last-child{border-bottom:none;}
+  /* charts */
+  .leg{display:flex;gap:16px;margin-bottom:10px;font-size:12px;color:var(--text2);flex-wrap:wrap;}
+  .li{display:flex;align-items:center;gap:6px;}
+  .ls{width:24px;height:3px;border-radius:2px;}
+  .cw{position:relative;width:100%;}
+  @media(max-width:680px){.mg4,.mg3,.mg6{grid-template-columns:repeat(2,1fr);}.two,.three,.nsg,.rg{grid-template-columns:1fr;}.tab{padding:8px 12px;font-size:11px;}.pw{width:90px;}}
+</style>
+</head>
+<body>
+<div class="page-header">
+  <div><div class="page-title">Dashboard Comercial</div><div class="page-sub">Abril 2025 · Semanas 1, 2 e 3</div></div>
+</div>
+<div class="tabs">
+  <div class="tab active" onclick="showTab('s1')">Semana 1 · 03–10/04</div>
+  <div class="tab" onclick="showTab('s2')">Semana 2 · 11–17/04</div>
+  <div class="tab" onclick="showTab('s3')">Semana 3 · 18–24/04</div>
+  <div class="tab" onclick="showTab('comp')">Compilado + Comparativo</div>
+</div>
+
+<!-- ===== S1 ===== -->
+<div class="pane active" id="pane-s1">
+  <div class="sl">Visão geral</div>
+  <div class="mg4">
+    <div class="mc"><div class="ml">Reuniões agendadas</div><div class="mv">25</div></div>
+    <div class="mc"><div class="ml">Reuniões realizadas</div><div class="mv">15</div><div class="ms"><span class="badge badge-warn">60% das agend.</span></div></div>
+    <div class="mc"><div class="ml">No-show geral</div><div class="mv">40%</div><div class="ms"><span class="badge badge-bad">meta: 30%</span></div></div>
+    <div class="mc"><div class="ml">Taxa de conversão</div><div class="mv">13%</div><div class="ms">2 vendas / 15 reun.</div></div>
+  </div>
+  <div class="mg4">
+    <div class="mc"><div class="ml">Vendas brutas</div><div class="mv">3</div><div class="ms"><span class="badge badge-bad">1 cancelamento</span></div></div>
+    <div class="mc"><div class="ml">Vendas líquidas</div><div class="mv">2</div><div class="ms">R$54.000</div></div>
+    <div class="mc"><div class="ml">Cancelamentos</div><div class="mv">1</div><div class="ms"><span style="color:var(--red-text);font-size:11px;">-R$27.000 (Otávio)</span></div></div>
+    <div class="mc"><div class="ml">Total agendamentos</div><div class="mv">15</div><div class="ms">Mayara:6 · Aline:9</div></div>
+  </div>
+  <hr class="d">
+  <div class="sl">SDRs</div>
+  <div class="two">
+    <div class="card">
+      <div class="ct">Agendamentos</div>
+      <div class="pr">
+        <div class="pi"><div class="av av-amber">MA</div>Mayara</div>
+        <div class="pm"><div class="pn">6 <span>/ meta 10</span></div><div class="pw"><div class="pb"><div class="pf pf-warn" style="width:60%"></div></div></div><span class="badge badge-warn">60%</span></div>
+      </div>
+      <div class="pr">
+        <div class="pi"><div class="av av-teal">AL</div>Aline</div>
+        <div class="pm"><div class="pn">9 <span>/ meta 30</span></div><div class="pw"><div class="pb"><div class="pf pf-bad" style="width:30%"></div></div></div><span class="badge badge-bad">30%</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">Abordagens · Mayara</div>
+      <div class="abn">439 <span style="font-size:14px;color:var(--text2);font-weight:400;">/ 600</span></div>
+      <div class="abl">meta semanal</div>
+      <div class="abp"><div class="pf pf-warn" style="width:73%"></div></div>
+      <span class="badge badge-warn">73% da meta</span>
+    </div>
+  </div>
+  <hr class="d">
+  <div class="sl">Closers</div>
+  <div class="two">
+    <div class="card">
+      <div class="ct">Reuniões realizadas</div>
+      <div class="pr">
+        <div class="pi"><div class="av av-blue">OT</div>Otávio</div>
+        <div class="pm"><div class="pn">10 <span>/ meta 25</span></div><div class="pw"><div class="pb"><div class="pf pf-bad" style="width:40%"></div></div></div><span class="badge badge-bad">40% · conv. 10%</span></div>
+      </div>
+      <div class="pr">
+        <div class="pi"><div class="av av-teal">VA</div>Vanessa</div>
+        <div class="pm"><div class="pn">5 <span>/ meta 5</span></div><div class="pw"><div class="pb"><div class="pf pf-ok" style="width:100%"></div></div></div><span class="badge badge-ok">100% · conv. 0%</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">Vendas no mês (após S1)</div>
+      <div class="pr">
+        <div class="pi"><div class="av av-blue">OT</div>Otávio</div>
+        <div class="pm"><div class="pn">2 líq. <span style="color:var(--red-text);">-1 cancel.</span></div><div class="pw"><div class="pb"><div class="pf pf-bad" style="width:7%"></div></div></div><span class="badge badge-bad">7% da meta (28)</span></div>
+      </div>
+      <div class="pr">
+        <div class="pi"><div class="av av-teal">VA</div>Vanessa</div>
+        <div class="pm"><div class="pn">0 <span>/ meta 2</span></div><div class="pw"><div class="pb"><div class="pf pf-bad" style="width:0%"></div></div></div><span class="badge badge-bad">0%</span></div>
+      </div>
+    </div>
+  </div>
+  <hr class="d">
+  <div class="sl">Insights</div>
+  <div class="ins"><div class="dot dot-bad"></div><div><strong>No-show em 40%:</strong> 10pp acima da meta. Baixo comparecimento comprometeu os resultados.</div></div>
+  <div class="ins"><div class="dot dot-bad"></div><div><strong>1 cancelamento de R$27k (Otávio):</strong> fecha a semana com apenas 2 vendas líquidas.</div></div>
+  <div class="ins"><div class="dot dot-ok"></div><div><strong>Vanessa bateu a meta semanal de reuniões</strong> (5/5).</div></div>
+  <div class="ins"><div class="dot dot-warn"></div><div><strong>SDRs abaixo da meta:</strong> Mayara 60% e Aline 30% dos agendamentos.</div></div>
+</div>
+
+<!-- ===== S2 ===== -->
+<div class="pane" id="pane-s2">
+  <div class="sl">Visão geral</div>
+  <div class="mg4">
+    <div class="mc"><div class="ml">Reuniões agendadas</div><div class="mv">32</div><div class="ms"><span class="ug">↑ +7 vs S1</span></div></div>
+    <div class="mc"><div class="ml">Reuniões realizadas</div><div class="mv">21</div><div class="ms"><span class="badge badge-warn">66% agend.</span> <span class="ug">↑+6</span></div></div>
+    <div class="mc"><div class="ml">No-show geral</div><div class="mv">34%</div><div class="ms"><span class="badge badge-warn">meta: 30%</span> <span class="dg">↓-6pp</span></div></div>
+    <div class="mc"><div class="ml">Taxa de conversão</div><div class="mv">19%</div><div class="ms">4 vendas / 21 reun.</div></div>
+  </div>
+  <div class="mg4">
+    <div class="mc"><div class="ml">Vendas brutas</div><div class="mv">4</div><div class="ms"><span class="badge badge-ok">0 cancelamentos</span></div></div>
+    <div class="mc"><div class="ml">Vendas líquidas</div><div class="mv">4</div><div class="ms">R$108.000 <span class="ug">↑+2</span></div></div>
+    <div class="mc"><div class="ml">Cancelamentos</div><div class="mv">0</div><div class="ms"><span class="badge badge-ok">sem cancel.</span></div></div>
+    <div class="mc"><div class="ml">Total agendamentos</div><div class="mv">30</div><div class="ms">Mayara:9 · Aline:17 · VA:4</div></div>
+  </div>
+  <hr class="d">
+  <div class="sl">SDRs</div>
+  <div class="two">
+    <div class="card">
+      <div class="ct">Agendamentos</div>
+      <div class="pr">
+        <div class="pi"><div class="av av-amber">MA</div>Mayara</div>
+        <div class="pm"><div class="pn">9 <span>/ meta 10</span></div><div class="pw"><div class="pb"><div class="pf pf-ok" style="width:90%"></div></div></div><span class="badge badge-ok">90%</span></div>
+      </div>
+      <div class="pr">
+        <div class="pi"><div class="av av-teal">AL</div>Aline</div>
+        <div class="pm"><div class="pn">17 <span>/ meta 30</span></div><div class="pw"><div class="pb"><div class="pf pf-warn" style="width:57%"></div></div></div><span class="badge badge-warn">57%</span></div>
+      </div>
+      <div class="pr">
+        <div class="pi"><div class="av av-teal">VA</div>Vanessa</div>
+        <div class="pm"><div class="pn">4 <span>agendamentos</span></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">Abordagens · Mayara</div>
+      <div class="abn">540 <span style="font-size:14px;color:var(--text2);font-weight:400;">/ 600</span></div>
+      <div class="abl">meta semanal · <strong style="color:var(--green-text);">↑+101 vs S1</strong></div>
+      <div class="abp"><div class="pf pf-ok" style="width:90%"></div></div>
+      <span class="badge badge-ok">90% da meta</span>
+    </div>
+  </div>
+  <hr class="d">
+  <div class="sl">Closers</div>
+  <div class="two">
+    <div class="card">
+      <div class="ct">Reuniões realizadas</div>
+      <div class="pr">
+        <div class="pi"><div class="av av-blue">OT</div>Otávio</div>
+        <div class="pm"><div class="pn">14 <span>/ meta 25</span></div><div class="pw"><div class="pb"><div class="pf pf-warn" style="width:56%"></div></div></div><span class="badge badge-warn">56% · conv. 14%</span></div>
+      </div>
+      <div class="pr">
+        <div class="pi"><div class="av av-teal">VA</div>Vanessa</div>
+        <div class="pm"><div class="pn">7 <span>/ meta 5</span></div><div class="pw"><div class="pb"><div class="pf pf-ok" style="width:100%"></div></div></div><span class="badge badge-ok">140% · conv. 29%</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">Vendas no mês (acumulado)</div>
+      <div class="pr">
+        <div class="pi"><div class="av av-blue">OT</div>Otávio</div>
+        <div class="pm"><div class="pn">4 líq. <span>/ meta 28</span></div><div class="pw"><div class="pb"><div class="pf pf-bad" style="width:14%"></div></div></div><span class="badge badge-bad">14%</span></div>
+      </div>
+      <div class="pr">
+        <div class="pi"><div class="av av-teal">VA</div>Vanessa</div>
+        <div class="pm"><div class="pn">2 <span>/ meta 2</span></div><div class="pw"><div class="pb"><div class="pf pf-ok" style="width:100%"></div></div></div><span class="badge badge-ok">100% ✓</span></div>
+      </div>
+    </div>
+  </div>
+  <hr class="d">
+  <div class="sl">Insights</div>
+  <div class="ins"><div class="dot dot-ok"></div><div><strong>Semana de evolução em todos os indicadores:</strong> mais reuniões, mais vendas, sem cancelamentos, Vanessa batendo a meta mensal.</div></div>
+  <div class="ins"><div class="dot dot-ok"></div><div><strong>Mayara próxima da meta:</strong> 90% agendamentos e 90% abordagens.</div></div>
+  <div class="ins"><div class="dot dot-bad"></div><div><strong>Otávio em 14% da meta mensal:</strong> 4 líquidas de 28. Ritmo não sustenta o mês.</div></div>
+  <div class="ins"><div class="dot dot-warn"></div><div><strong>Aline evoluiu mas ainda distante:</strong> 57% da meta de 30.</div></div>
+</div>
+
+<!-- ===== S3 ===== -->
+<div class="pane" id="pane-s3">
+  <div class="sl">Visão geral</div>
+  <div class="mg4">
+    <div class="mc"><div class="ml">Reuniões agendadas</div><div class="mv">33</div><div class="ms"><span class="ug">↑+1 vs S2</span></div></div>
+    <div class="mc"><div class="ml">Reuniões realizadas</div><div class="mv">24</div><div class="ms"><span class="badge badge-ok">73% agend.</span> <span class="ug">↑+7pp</span></div></div>
+    <div class="mc"><div class="ml">No-show geral</div><div class="mv">27%</div><div class="ms"><span class="badge badge-ok">abaixo da meta!</span> <span class="dg">↓-7pp</span></div></div>
+    <div class="mc"><div class="ml">Taxa de conversão</div><div class="mv">13%</div><div class="ms">3 vendas / 24 reun.</div></div>
+  </div>
+  <div class="mg4">
+    <div class="mc"><div class="ml">Vendas brutas</div><div class="mv">3</div><div class="ms"><span class="badge badge-ok">0 cancelamentos</span></div></div>
+    <div class="mc"><div class="ml">Vendas líquidas</div><div class="mv">3</div><div class="ms">R$81.000</div></div>
+    <div class="mc"><div class="ml">Cancelamentos</div><div class="mv">0</div><div class="ms"><span class="badge badge-ok">sem cancel.</span></div></div>
+    <div class="mc"><div class="ml">Total agendamentos</div><div class="mv">34</div><div class="ms">Mayara:5 · Aline:29</div></div>
+  </div>
+  <hr class="d">
+  <div class="sl">No-show · semana 3</div>
+  <div class="nsg">
+    <div class="nsc">
+      <div class="nsv" style="color:var(--green);">27%</div>
+      <div class="nsl">9 faltas de 33 agendadas</div>
+      <div class="nsp"><div class="pf pf-ok" style="width:27%;height:100%;border-radius:3px;"></div></div>
+      <span class="badge badge-ok">abaixo da meta de 30% pela 1ª vez</span>
+    </div>
+    <div class="nsc">
+      <div class="nsv" style="color:var(--green);">24</div>
+      <div class="nsl">reuniões realizadas de 33</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:8px;">Melhor taxa de realização (73%). Otávio: 16 · Vanessa: 11</div>
+    </div>
+  </div>
+  <hr class="d">
+  <div class="sl">SDRs</div>
+  <div class="two">
+    <div class="card">
+      <div class="ct">Agendamentos</div>
+      <div class="pr">
+        <div class="pi"><div class="av av-amber">MA</div>Mayara</div>
+        <div class="pm"><div class="pn">5 <span>/ meta 10</span></div><div class="pw"><div class="pb"><div class="pf pf-bad" style="width:50%"></div></div></div><span class="badge badge-bad">50%</span></div>
+      </div>
+      <div class="pr">
+        <div class="pi"><div class="av av-teal">AL</div>Aline</div>
+        <div class="pm"><div class="pn">29 <span>/ meta 30</span></div><div class="pw"><div class="pb"><div class="pf pf-ok" style="width:97%"></div></div></div><span class="badge badge-ok">97%</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">Abordagens · Mayara</div>
+      <div class="abn">236 <span style="font-size:14px;color:var(--text2);font-weight:400;">/ 600</span></div>
+      <div class="abl">meta semanal · <strong style="color:var(--red-text);">↓-304 vs S2</strong></div>
+      <div class="abp"><div class="pf pf-bad" style="width:39%"></div></div>
+      <span class="badge badge-bad">39% da meta</span>
+      <div style="margin-top:8px;font-size:12px;color:var(--text2);">Queda relevante. Vale investigar.</div>
+    </div>
+  </div>
+  <hr class="d">
+  <div class="sl">Closers</div>
+  <div class="two">
+    <div class="card">
+      <div class="ct">Reuniões realizadas</div>
+      <div class="pr">
+        <div class="pi"><div class="av av-blue">OT</div>Otávio</div>
+        <div class="pm"><div class="pn">16 <span>/ meta 25</span></div><div class="pw"><div class="pb"><div class="pf pf-warn" style="width:64%"></div></div></div><span class="badge badge-warn">64% · conv. 13%</span></div>
+      </div>
+      <div class="pr">
+        <div class="pi"><div class="av av-teal">VA</div>Vanessa</div>
+        <div class="pm"><div class="pn">11 <span>/ meta 5</span></div><div class="pw"><div class="pb"><div class="pf pf-ok" style="width:100%"></div></div></div><span class="badge badge-ok">220% · conv. 9%</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">Vendas no mês (acumulado)</div>
+      <div class="pr">
+        <div class="pi"><div class="av av-blue">OT</div>Otávio</div>
+        <div class="pm"><div class="pn">6 líq. <span>/ meta 28</span></div><div class="pw"><div class="pb"><div class="pf pf-warn" style="width:21%"></div></div></div><span class="badge badge-warn">21%</span></div>
+      </div>
+      <div class="pr">
+        <div class="pi"><div class="av av-teal">VA</div>Vanessa</div>
+        <div class="pm"><div class="pn">3 <span>/ meta 2</span></div><div class="pw"><div class="pb"><div class="pf pf-ok" style="width:100%"></div></div></div><span class="badge badge-ok">150% ✓</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="ct">Vendas S3 · por canal</div>
+    <div class="pr"><div class="pi" style="font-size:12px;font-weight:400;color:var(--text2);">Aplicação direta</div><span class="badge badge-info">1 venda</span></div>
+    <div class="pr"><div class="pi" style="font-size:12px;font-weight:400;color:var(--text2);">Social Selling</div><span class="badge badge-purple">1 venda</span></div>
+    <div class="pr"><div class="pi" style="font-size:12px;font-weight:400;color:var(--text2);">Lançamento</div><span class="badge badge-info">1 venda</span></div>
+  </div>
+  <hr class="d">
+  <div class="sl">Insights</div>
+  <div class="ins"><div class="dot dot-ok"></div><div><strong>No-show abaixo da meta pela 1ª vez:</strong> 27% — trajetória de queda consistente (40%→34%→27%).</div></div>
+  <div class="ins"><div class="dot dot-ok"></div><div><strong>Aline quase bateu a meta:</strong> 29/30 (97%) — melhor desempenho do mês.</div></div>
+  <div class="ins"><div class="dot dot-ok"></div><div><strong>Vanessa em 150% da meta mensal de vendas</strong> (3/2).</div></div>
+  <div class="ins"><div class="dot dot-bad"></div><div><strong>Mayara com queda nas abordagens:</strong> 236 vs 540 na S2 (-56%). Vale investigar.</div></div>
+  <div class="ins"><div class="dot dot-warn"></div><div><strong>Otávio em 21% da meta mensal</strong> (6/28) com o mês se encerrando.</div></div>
+</div>
+
+<!-- ===== COMPILADO ===== -->
+<div class="pane" id="pane-comp">
+  <div class="sl">Acumulado S1 + S2 + S3</div>
+  <div class="mg4">
+    <div class="mc"><div class="ml">Reuniões agendadas</div><div class="mv">90</div><div class="ms">25+32+33</div></div>
+    <div class="mc"><div class="ml">Reuniões realizadas</div><div class="mv">60</div><div class="ms">15+21+24</div></div>
+    <div class="mc"><div class="ml">No-show médio</div><div class="mv">33%</div><div class="ms"><span class="badge badge-warn">meta: 30%</span></div></div>
+    <div class="mc"><div class="ml">Taxa conv. geral</div><div class="mv">15%</div><div class="ms">9 vendas / 60 reun.</div></div>
+  </div>
+  <div class="mg4">
+    <div class="mc"><div class="ml">Vendas brutas</div><div class="mv">10</div><div class="ms">3+4+3</div></div>
+    <div class="mc"><div class="ml">Vendas líquidas</div><div class="mv">9</div><div class="ms">10 – 1 cancelamento</div></div>
+    <div class="mc"><div class="ml">Faturamento líq.</div><div class="mv">R$243k</div><div class="ms">9 × R$27.000</div></div>
+    <div class="mc"><div class="ml">Cancelamentos</div><div class="mv">1</div><div class="ms"><span style="color:var(--red-text);font-size:11px;">-R$27.000 (Otávio S1)</span></div></div>
+  </div>
+
+  <hr class="d">
+  <div class="sl">Comparativo S1 → S2 → S3</div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="ch"><span>S1</span><span>S2</span><span>S3</span><span>S2→S3</span></div>
+    <div class="cr"><div class="cl">Reuniões agendadas</div><div class="cv s1">25</div><div class="cv s2">32</div><div class="cv s3">33</div><div class="cd dug">+1</div></div>
+    <div class="cr"><div class="cl">Reuniões realizadas</div><div class="cv s1">15</div><div class="cv s2">21</div><div class="cv s3">24</div><div class="cd dug">+3</div></div>
+    <div class="cr"><div class="cl">No-show geral</div><div class="cv s1">40%</div><div class="cv s2">34%</div><div class="cv s3">27%</div><div class="cd ddg">-7pp</div></div>
+    <div class="cr"><div class="cl">Taxa de conversão</div><div class="cv s1">13%</div><div class="cv s2">19%</div><div class="cv s3">13%</div><div class="cd dub">-6pp</div></div>
+    <div class="cr"><div class="cl">Vendas brutas</div><div class="cv s1">3</div><div class="cv s2">4</div><div class="cv s3">3</div><div class="cd dub">-1</div></div>
+    <div class="cr"><div class="cl">Cancelamentos</div><div class="cv s1">1</div><div class="cv s2">0</div><div class="cv s3">0</div><div class="cd ddg">—</div></div>
+    <div class="cr"><div class="cl">Vendas líquidas</div><div class="cv s1">2</div><div class="cv s2">4</div><div class="cv s3">3</div><div class="cd dub">-1</div></div>
+    <div class="cr"><div class="cl">Faturamento líq.</div><div class="cv s1">R$54k</div><div class="cv s2">R$108k</div><div class="cv s3">R$81k</div><div class="cd dub">-25%</div></div>
+    <div class="cr"><div class="cl">Agendamentos Mayara</div><div class="cv s1">6</div><div class="cv s2">9</div><div class="cv s3">5</div><div class="cd dub">-4</div></div>
+    <div class="cr"><div class="cl">Agendamentos Aline</div><div class="cv s1">9</div><div class="cv s2">17</div><div class="cv s3">29</div><div class="cd dug">+12</div></div>
+    <div class="cr"><div class="cl">Abordagens Mayara</div><div class="cv s1">439</div><div class="cv s2">540</div><div class="cv s3">236</div><div class="cd dub">-304</div></div>
+    <div class="cr"><div class="cl">Reuniões Otávio</div><div class="cv s1">10</div><div class="cv s2">14</div><div class="cv s3">16</div><div class="cd dug">+2</div></div>
+    <div class="cr"><div class="cl">Reuniões Vanessa</div><div class="cv s1">5</div><div class="cv s2">7</div><div class="cv s3">11</div><div class="cd dug">+4</div></div>
+  </div>
+
+  <hr class="d">
+  <div class="sl">Evolução das métricas · gráficos de linha</div>
+  <div class="two">
+    <div class="card">
+      <div class="ct">Reuniões agendadas e realizadas</div>
+      <div class="leg"><div class="li"><div class="ls" style="background:#2563EB;"></div>Agendadas</div><div class="li"><div class="ls" style="background:#16A34A;"></div>Realizadas</div></div>
+      <div class="cw" style="height:180px;"><canvas id="cReun"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="ct">No-show e taxa de conversão</div>
+      <div class="leg"><div class="li"><div class="ls" style="background:#DC2626;"></div>No-show %</div><div class="li"><div class="ls" style="background:#D97706;"></div>Conversão %</div><div class="li"><div class="ls" style="background:#9E9C98;border-top:2px dashed #9E9C98;height:0;"></div>Meta 30%</div></div>
+      <div class="cw" style="height:180px;"><canvas id="cNS"></canvas></div>
+    </div>
+  </div>
+  <div class="two">
+    <div class="card">
+      <div class="ct">Vendas líquidas e faturamento</div>
+      <div class="leg"><div class="li"><div class="ls" style="background:#7C3AED;"></div>Vendas líq.</div><div class="li"><div class="ls" style="background:#16A34A;"></div>Fat. (R$k)</div></div>
+      <div class="cw" style="height:180px;"><canvas id="cVendas"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="ct">Agendamentos SDRs por semana</div>
+      <div class="leg"><div class="li"><div class="ls" style="background:#D97706;"></div>Mayara</div><div class="li"><div class="ls" style="background:#0D9488;"></div>Aline</div></div>
+      <div class="cw" style="height:180px;"><canvas id="cSDR"></canvas></div>
+    </div>
+  </div>
+
+  <hr class="d">
+  <div class="sl">Closers · acumulado e taxa de conversão</div>
+  <div class="two">
+    <div class="card">
+      <div class="ct">Reuniões realizadas · acumulado</div>
+      <div class="pr">
+        <div class="pi"><div class="av av-blue">OT</div>Otávio</div>
+        <div class="pm">
+          <div class="pn">40 <span>reun. realizadas</span></div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">S1:10 · S2:14 · S3:16</div>
+          <div class="pw"><div class="pb"><div class="pf pf-warn" style="width:53%"></div></div></div>
+          <span class="badge badge-warn">40% meta acum. (100)</span>
+        </div>
+      </div>
+      <div class="pr">
+        <div class="pi"><div class="av av-teal">VA</div>Vanessa</div>
+        <div class="pm">
+          <div class="pn">23 <span>reun. realizadas</span></div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">S1:5 · S2:7 · S3:11</div>
+          <div class="pw"><div class="pb"><div class="pf pf-ok" style="width:100%"></div></div></div>
+          <span class="badge badge-ok">115% meta acum. (20)</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">Taxa de conversão · acumulado</div>
+      <div class="pr">
+        <div class="pi"><div class="av av-blue">OT</div>Otávio</div>
+        <div class="pm">
+          <div class="pn">20% <span>conv. geral</span></div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">8 vendas / 40 reuniões</div>
+          <div class="pw"><div class="pb"><div class="pf pf-warn" style="width:66%"></div></div></div>
+          <span class="badge badge-warn">S1:10% · S2:14% · S3:13%</span>
+        </div>
+      </div>
+      <div class="pr">
+        <div class="pi"><div class="av av-teal">VA</div>Vanessa</div>
+        <div class="pm">
+          <div class="pn">17% <span>conv. geral</span></div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">4 vendas / 23 reuniões</div>
+          <div class="pw"><div class="pb"><div class="pf pf-warn" style="width:57%"></div></div></div>
+          <span class="badge badge-warn">S1:0% · S2:29% · S3:9%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="d">
+  <div class="sl">Metas mensais · acumulado</div>
+  <div class="two">
+    <div class="card">
+      <div class="ct">Otávio · vendas no mês</div>
+      <div class="mb-big">8 <span style="font-size:16px;color:var(--text2);font-weight:400;">líq. / meta 28</span></div>
+      <div class="mb-lbl">9 brutas – 1 cancelamento</div>
+      <div class="mb-prog"><div class="pf pf-warn" style="width:29%;height:100%;border-radius:4px;"></div></div>
+      <span class="badge badge-warn">29% da meta mensal</span>
+    </div>
+    <div class="card">
+      <div class="ct">Vanessa · vendas no mês</div>
+      <div class="mb-big">4 <span style="font-size:16px;color:var(--text2);font-weight:400;">/ meta 2</span></div>
+      <div class="mb-lbl">Meta batida na S2 · +2 nas S2+S3</div>
+      <div class="mb-prog"><div class="pf pf-ok" style="width:100%;height:100%;border-radius:4px;"></div></div>
+      <span class="badge badge-ok">200% — superou a meta ✓</span>
+    </div>
+  </div>
+
+  <hr class="d">
+  <div class="sl">SDRs · acumulado das 3 semanas</div>
+  <div class="two">
+    <div class="card">
+      <div class="ct">Agendamentos acumulados</div>
+      <div class="pr">
+        <div class="pi"><div class="av av-amber">MA</div>Mayara</div>
+        <div class="pm">
+          <div class="pn">20 <span>total (6+9+5)</span></div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">S1:6 · S2:9 · S3:5</div>
+          <div class="pw"><div class="pb"><div class="pf pf-warn" style="width:67%"></div></div></div>
+          <span class="badge badge-warn">45% meta acum. (44)</span>
+        </div>
+      </div>
+      <div class="pr">
+        <div class="pi"><div class="av av-teal">AL</div>Aline</div>
+        <div class="pm">
+          <div class="pn">55 <span>total (9+17+29)</span></div>
+          <div style="font-size:11px;color:var(--text3);margin-bottom:4px;">S1:9 · S2:17 · S3:29</div>
+          <div class="pw"><div class="pb"><div class="pf pf-warn" style="width:61%"></div></div></div>
+          <span class="badge badge-warn">43% meta acum. (128)</span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">Abordagens acumuladas · Mayara</div>
+      <div class="abn">1.215 <span style="font-size:14px;color:var(--text2);font-weight:400;">total</span></div>
+      <div class="abl">S1:439 · S2:540 · S3:236</div>
+      <div class="abp"><div class="pf pf-warn" style="width:68%"></div></div>
+      <span class="badge badge-warn">51% da meta acum. (2.400)</span>
+      <div style="margin-top:10px;font-size:11px;color:var(--text2);">Negócios Aline (S3): <strong>137</strong> trabalhados</div>
+    </div>
+  </div>
+
+  <hr class="d">
+  <div class="sl">Vendas por canal · acumulado S1+S2+S3</div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="canal-header"><div>Canal</div><div style="text-align:center;">S1</div><div style="text-align:center;">S2</div><div style="text-align:center;">S3</div><div style="text-align:center;">Total</div></div>
+    <div class="canal-row"><div>Bio Instagram</div><div style="text-align:center;"><span class="badge badge-ok">1</span></div><div style="text-align:center;"><span class="badge badge-ok">1</span></div><div style="text-align:center;"><span style="color:var(--text3);">—</span></div><div style="text-align:center;font-weight:600;font-family:'DM Mono',monospace;">2</div></div>
+    <div class="canal-row"><div>Lançamento</div><div style="text-align:center;"><span style="color:var(--text3);">—</span></div><div style="text-align:center;"><span class="badge badge-ok">2</span></div><div style="text-align:center;"><span class="badge badge-ok">1</span></div><div style="text-align:center;font-weight:600;font-family:'DM Mono',monospace;">3</div></div>
+    <div class="canal-row"><div>Aplicação direta</div><div style="text-align:center;"><span style="color:var(--text3);">—</span></div><div style="text-align:center;"><span class="badge badge-ok">1</span></div><div style="text-align:center;"><span class="badge badge-ok">1</span></div><div style="text-align:center;font-weight:600;font-family:'DM Mono',monospace;">2</div></div>
+    <div class="canal-row"><div>Check-up</div><div style="text-align:center;"><span class="badge badge-ok">1</span></div><div style="text-align:center;"><span style="color:var(--text3);">—</span></div><div style="text-align:center;"><span style="color:var(--text3);">—</span></div><div style="text-align:center;font-weight:600;font-family:'DM Mono',monospace;">1</div></div>
+    <div class="canal-row"><div>Social Selling</div><div style="text-align:center;"><span style="color:var(--text3);">—</span></div><div style="text-align:center;"><span style="color:var(--text3);">—</span></div><div style="text-align:center;"><span class="badge badge-purple">1</span></div><div style="text-align:center;font-weight:600;font-family:'DM Mono',monospace;">1</div></div>
+    <div class="canal-row" style="border-top:1px solid var(--border);margin-top:4px;padding-top:12px;"><div style="font-weight:600;">Total</div><div style="text-align:center;font-weight:600;font-family:'DM Mono',monospace;">2</div><div style="text-align:center;font-weight:600;font-family:'DM Mono',monospace;">4</div><div style="text-align:center;font-weight:600;font-family:'DM Mono',monospace;">3</div><div style="text-align:center;font-weight:700;font-size:16px;font-family:'DM Mono',monospace;">9</div></div>
+  </div>
+
+  <hr class="d">
+  <div class="sl">Insights consolidados</div>
+  <div class="ins"><div class="dot dot-ok"></div><div><strong>No-show em trajetória consistente de queda:</strong> 40% → 34% → 27%. Abaixo da meta pela primeira vez na S3.</div></div>
+  <div class="ins"><div class="dot dot-ok"></div><div><strong>Aline em evolução constante:</strong> 9 → 17 → 29 agendamentos. Com 61% da meta acumulada e tendência crescente.</div></div>
+  <div class="ins"><div class="dot dot-ok"></div><div><strong>Vanessa em 200% da meta mensal de vendas</strong> (4/2). Mantém ritmo acima da meta de reuniões nas 3 semanas.</div></div>
+  <div class="ins"><div class="dot dot-warn"></div><div><strong>Mayara com queda brusca na S3:</strong> abordagens caíram de 540 para 236 (-56%). Agendamentos de 9 para 5. Vale investigar.</div></div>
+  <div class="ins"><div class="dot dot-bad"></div><div><strong>Otávio em 29% da meta mensal</strong> (8/28). Taxa de conversão caiu na S3 (13%) vs S2 (14%). Gap muito grande com o mês se encerrando.</div></div>
+  <div class="ins"><div class="dot dot-info"></div><div><strong>Lançamento é o canal com mais vendas (3):</strong> presente em 2 das 3 semanas. Social Selling estreou na S3 com 1 venda.</div></div>
+</div>
+
+<script>
+function showTab(id){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['s1','s2','s3','comp'][i]===id));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('active',p.id==='pane-'+id));
+  if(id==='comp'&&!window._c)buildCharts();
+}
+function buildCharts(){
+  window._c=true;
+  const tc='#9E9C98',gc='rgba(0,0,0,0.06)',labels=['S1','S2','S3'];
+  const t=0.3,r=5;
+  const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:tc,font:{size:11}},grid:{color:gc}},y:{ticks:{color:tc,font:{size:10}},grid:{color:gc}}}};
+
+  new Chart(document.getElementById('cReun'),{type:'line',data:{labels,datasets:[
+    {label:'Agendadas',data:[25,32,33],borderColor:'#2563EB',backgroundColor:'rgba(37,99,235,0.07)',tension:t,fill:true,pointRadius:r,pointBackgroundColor:'#2563EB'},
+    {label:'Realizadas',data:[15,21,24],borderColor:'#16A34A',backgroundColor:'rgba(22,163,74,0.07)',tension:t,fill:true,pointRadius:r,pointBackgroundColor:'#16A34A'}
+  ]},options:{...base}});
+
+  new Chart(document.getElementById('cNS'),{type:'line',data:{labels,datasets:[
+    {label:'No-show %',data:[40,34,27],borderColor:'#DC2626',tension:t,fill:false,pointRadius:r,pointBackgroundColor:'#DC2626'},
+    {label:'Conversão %',data:[13,19,13],borderColor:'#D97706',tension:t,fill:false,pointRadius:r,pointBackgroundColor:'#D97706'},
+    {label:'Meta 30%',data:[30,30,30],borderColor:'#9E9C98',borderDash:[5,5],tension:0,fill:false,pointRadius:0}
+  ]},options:{...base,scales:{x:{ticks:{color:tc,font:{size:11}},grid:{color:gc}},y:{ticks:{color:tc,font:{size:10},callback:v=>v+'%'},grid:{color:gc}}}}});
+
+  new Chart(document.getElementById('cVendas'),{type:'line',data:{labels,datasets:[
+    {label:'Vendas líq.',data:[2,4,3],borderColor:'#7C3AED',tension:t,fill:false,pointRadius:r,pointBackgroundColor:'#7C3AED',yAxisID:'y'},
+    {label:'Faturamento (R$k)',data:[54,108,81],borderColor:'#16A34A',tension:t,fill:false,pointRadius:r,pointBackgroundColor:'#16A34A',yAxisID:'y2'}
+  ]},options:{...base,scales:{x:{ticks:{color:tc,font:{size:11}},grid:{color:gc}},y:{ticks:{color:tc,font:{size:10}},grid:{color:gc},position:'left'},y2:{ticks:{color:tc,font:{size:10},callback:v=>'R$'+v+'k'},grid:{display:false},position:'right'}}}});
+
+  new Chart(document.getElementById('cSDR'),{type:'line',data:{labels,datasets:[
+    {label:'Mayara',data:[6,9,5],borderColor:'#D97706',tension:t,fill:false,pointRadius:r,pointBackgroundColor:'#D97706'},
+    {label:'Aline',data:[9,17,29],borderColor:'#0D9488',tension:t,fill:false,pointRadius:r,pointBackgroundColor:'#0D9488'}
+  ]},options:{...base}});
+}
+</script>
+</body>
+</html>
