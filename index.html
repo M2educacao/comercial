@@ -550,15 +550,6 @@
     </div>
   </div>
 
-  <hr class="d">
-  <div class="sl">Insights consolidados</div>
-  <div class="ins"><div class="dot dot-ok"></div><div><strong>Taxa de conversão subiu na S4 para 36%</strong> — melhor do mês. Mesmo com menos reuniões, o time fechou 4 vendas. Sinal de qualificação melhor do pipeline.</div></div>
-  <div class="ins"><div class="dot dot-ok"></div><div><strong>Vanessa encerra o mês em 250% da meta de vendas</strong> (5/2) e 125% da meta de reuniões. Conversão de 20% sobre 1ªs realizadas (vs 15% do Otávio) — converte melhor mesmo com menor volume.</div></div>
-  <div class="ins"><div class="dot dot-warn"></div><div><strong>No-show voltou a 35% na S4</strong> — interrompeu a tendência de queda. Média do mês em 34%, acima da meta de 30%. Pontas do mês (S1: 43% e S4: 35%) concentram o problema.</div></div>
-  <div class="ins"><div class="dot dot-bad"></div><div><strong>Otávio fecha em 29% da meta mensal</strong> (8/28). Volume muito acima da Vanessa (52 vs 25 reuniões), mas conversão menor (15% vs 20%).</div></div>
-  <div class="ins"><div class="dot dot-warn"></div><div><strong>SDRs abaixo das metas mensais:</strong> Mayara em 50% (22/44) e Aline em 51% (65/128). Abordagens de Mayara em 64% (1.543/2.400).</div></div>
-  <div class="ins"><div class="dot dot-info"></div><div><strong>Lançamento e Aplicação direta empatados como maiores canais</strong> (3 vendas cada). Lead antigo (Drosendo) e SMP (Marcus) estrearam — sinais de receita "extra" do funil principal.</div></div>
-  <div class="ins"><div class="dot dot-warn"></div><div><strong>Follow-ups: 47 realizados de 59 agendados (47% no-show)</strong> — operacional separado do funil de conversão. Vanessa tem 33% de comparecimento em FU, vs 55% do Otávio.</div></div>
 </div>
 
 <!-- HISTÓRICO -->
@@ -568,17 +559,48 @@
     <strong>Fonte:</strong> dados de ago/25 a mar/26 vêm do relatório do consultor (referência de tendência, não consolidado). Abr/26 vem da nossa contagem (calendário + CRM, validado).
   </div>
 
-  <div class="mg4">
-    <div class="mc"><div class="ml">Vendas média 8m</div><div class="mv">17,8</div><div class="ms">vendas brutas/mês · ago/25 a mar/26</div></div>
-    <div class="mc"><div class="ml">Vendas em abril</div><div class="mv">13</div><div class="ms"><span class="badge badge-bad">-27% vs média</span></div></div>
-    <div class="mc"><div class="ml">Reun. realiz. média</div><div class="mv">68</div><div class="ms">por mês · histórico</div></div>
-    <div class="mc"><div class="ml">Reun. realiz. abril</div><div class="mv">77</div><div class="ms"><span class="badge badge-ok">+13% vs média</span></div></div>
-  </div>
-  <div class="mg4">
-    <div class="mc"><div class="ml">Tx fech. média</div><div class="mv">27%</div><div class="ms">vendas/reuniões</div></div>
-    <div class="mc"><div class="ml">Tx fech. abril</div><div class="mv">16%</div><div class="ms"><span class="badge badge-bad">-11pp vs média</span></div></div>
-    <div class="mc"><div class="ml">No-show média</div><div class="mv">28%</div><div class="ms">histórico</div></div>
-    <div class="mc"><div class="ml">No-show abril</div><div class="mv">34%</div><div class="ms"><span class="badge badge-bad">+6pp vs média</span></div></div>
+  <style>
+    .hc{background:#FFF;border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+    .hc-l{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;}
+    .hc-main{text-align:center;padding:6px 0 8px;}
+    .hc-mv{font-size:30px;font-weight:600;font-family:'DM Mono',monospace;line-height:1;}
+    .hc-ms{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-top:4px;}
+    .hc-foot{display:flex;justify-content:space-between;align-items:baseline;padding-top:10px;margin-top:6px;border-top:1px solid var(--border);font-size:11px;}
+    .hc-foot .lbl{color:var(--text3);}.hc-foot .val{font-family:'DM Mono',monospace;font-weight:500;color:var(--text2);}
+    .mg5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:18px;}
+    @media(max-width:900px){.mg5{grid-template-columns:repeat(2,1fr);}}
+  </style>
+  <div class="mg5">
+    <div class="hc">
+      <div class="hc-l">Reuniões agendadas</div>
+      <div class="hc-main"><div class="hc-mv">117</div><div class="hc-ms">abril</div></div>
+      <div class="hc-foot"><span class="lbl">Média 8m</span><span class="val">95</span></div>
+      <div class="hc-foot" style="border:none;padding-top:4px;margin-top:0;"><span class="lbl">vs média</span><span class="val" style="color:var(--green-text);">+23%</span></div>
+    </div>
+    <div class="hc">
+      <div class="hc-l">Reuniões realizadas</div>
+      <div class="hc-main"><div class="hc-mv">77</div><div class="hc-ms">abril</div></div>
+      <div class="hc-foot"><span class="lbl">Média 8m</span><span class="val">68</span></div>
+      <div class="hc-foot" style="border:none;padding-top:4px;margin-top:0;"><span class="lbl">vs média</span><span class="val" style="color:var(--green-text);">+13%</span></div>
+    </div>
+    <div class="hc">
+      <div class="hc-l">No-show</div>
+      <div class="hc-main"><div class="hc-mv" style="color:var(--red-text);">34%</div><div class="hc-ms">abril</div></div>
+      <div class="hc-foot"><span class="lbl">Média 8m</span><span class="val">28%</span></div>
+      <div class="hc-foot" style="border:none;padding-top:4px;margin-top:0;"><span class="lbl">vs média</span><span class="val" style="color:var(--red-text);">+6pp</span></div>
+    </div>
+    <div class="hc">
+      <div class="hc-l">Vendas (brutas)</div>
+      <div class="hc-main"><div class="hc-mv">13</div><div class="hc-ms">abril</div></div>
+      <div class="hc-foot"><span class="lbl">Média 8m</span><span class="val">17,8</span></div>
+      <div class="hc-foot" style="border:none;padding-top:4px;margin-top:0;"><span class="lbl">vs média</span><span class="val" style="color:var(--red-text);">-27%</span></div>
+    </div>
+    <div class="hc">
+      <div class="hc-l">Tx fechamento</div>
+      <div class="hc-main"><div class="hc-mv" style="color:var(--red-text);">16%</div><div class="hc-ms">abril</div></div>
+      <div class="hc-foot"><span class="lbl">Média 8m</span><span class="val">27%</span></div>
+      <div class="hc-foot" style="border:none;padding-top:4px;margin-top:0;"><span class="lbl">vs média</span><span class="val" style="color:var(--red-text);">-11pp</span></div>
+    </div>
   </div>
 
   <hr class="d">
@@ -595,6 +617,17 @@
       <div style="width:52px;text-align:right;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;">1.468</div>
       <div style="width:52px;text-align:right;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;">2.312</div>
       <div style="width:52px;text-align:right;font-weight:600;font-family:'DM Mono',monospace;">2.327</div>
+    </div>
+    <div class="cr"><div class="cl">Reuniões agendadas</div>
+      <div style="width:52px;text-align:right;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;">118</div>
+      <div style="width:52px;text-align:right;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;">106</div>
+      <div style="width:52px;text-align:right;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;">112</div>
+      <div style="width:52px;text-align:right;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;">105</div>
+      <div style="width:52px;text-align:right;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;">47</div>
+      <div style="width:52px;text-align:right;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;">91</div>
+      <div style="width:52px;text-align:right;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;">81</div>
+      <div style="width:52px;text-align:right;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;">100</div>
+      <div style="width:52px;text-align:right;font-weight:600;font-family:'DM Mono',monospace;">117</div>
     </div>
     <div class="cr"><div class="cl">Reuniões realizadas</div>
       <div style="width:52px;text-align:right;font-size:11px;color:var(--text3);font-family:'DM Mono',monospace;">80</div>
@@ -657,7 +690,7 @@
         <div style="text-align:center;font-size:10px;color:var(--text3);">mar</div>
         <div style="text-align:center;font-size:10px;color:var(--text3);font-weight:600;">abr</div>
         <div style="text-align:center;font-size:11px;font-family:'DM Mono',monospace;color:var(--text2);">17%</div>
-        <div style="text-align:center;font-size:11px;font-family:'DM Mono',monospace;color:var(--red-text);">3%</div>
+        <div style="text-align:center;font-size:11px;font-family:'DM Mono',monospace;color:var(--text3);" title="Valor a revisar">3%*</div>
         <div style="text-align:center;font-size:11px;font-family:'DM Mono',monospace;color:var(--text2);">24%</div>
         <div style="text-align:center;font-size:11px;font-family:'DM Mono',monospace;color:var(--text2);">22%</div>
         <div style="text-align:center;font-size:11px;font-family:'DM Mono',monospace;color:var(--text2);">22%</div>
@@ -668,7 +701,8 @@
       </div>
       <div style="margin-top:14px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;color:var(--text2);">
         <strong>Acumulado:</strong> 421 reuniões · 90 vendas · <strong>21,4%</strong> tx fechamento histórica<br>
-        <strong>Pico:</strong> jan/26 com 32% (campanha CPL 05/01) · <strong>Vale:</strong> set/25 e mar/26
+        <strong>Pico:</strong> jan/26 com 32% (campanha CPL 05/01) · <strong>Vale:</strong> mar/26
+        <div style="margin-top:6px;font-size:10px;color:var(--text3);">* set/25: dado a revisar (relatório consultor)</div>
       </div>
     </div>
     <div class="card"><div class="ct">Vanessa · estreante em abr/26</div>
@@ -676,7 +710,7 @@
         <div style="font-size:36px;font-weight:600;font-family:'DM Mono',monospace;color:var(--green-text);">19%</div>
         <div style="font-size:12px;color:var(--text2);margin-top:4px;">tx fechamento no 1º mês</div>
         <div style="margin-top:12px;font-size:12px;color:var(--text2);">5 vendas em 27 reuniões realizadas</div>
-        <div style="margin-top:8px;font-size:11px;color:var(--text3);">Estreia próxima ao Otávio em ago/25 (17%)</div>
+        <div style="margin-top:8px;font-size:11px;color:var(--text3);">Otávio não estreou em ago/25 — sem base de comparação anterior</div>
       </div>
     </div>
   </div>
@@ -699,46 +733,110 @@
   <div class="ins"><div class="dot dot-warn"></div><div><strong>No-show acima da média histórica (34% vs 28%)</strong> — recorrente em ~6 meses dos últimos 9. Não é exceção, é padrão que precisa de processo (SLA 7d + confirmação 24h vai atacar isso).</div></div>
   <div class="ins"><div class="dot dot-info"></div><div><strong>Volume de reuniões está saudável:</strong> 77 em abril vs média de 68. Otávio fez 47 (acima da própria média de 47/mês em 2026). Vanessa entrou e somou 27. Não é problema de pipeline — é problema de fechamento.</div></div>
   <div class="ins"><div class="dot dot-warn"></div><div><strong>Otávio teve dois picos atípicos:</strong> jan/26 (32%) e fev/26 (27%) — coincidiram com a campanha CPL 05/01 que trouxe leads quentes. Sem campanha grande, sua taxa cai para o patamar de 17-22% (que é a média histórica dele desde ago/25).</div></div>
-  <div class="ins"><div class="dot dot-ok"></div><div><strong>Vanessa estreou bem:</strong> 19% no primeiro mês — exatamente onde Otávio estreou (17% em ago/25). Curva esperada para um closer aprendendo. Espaço claro para crescer.</div></div>
+  <div class="ins"><div class="dot dot-ok"></div><div><strong>Vanessa estreou bem:</strong> 19% no primeiro mês — patamar saudável para um closer aprendendo. Otávio não estreou em ago/25 (não temos métricas anteriores), então não há base direta de comparação. Espaço claro para crescer.</div></div>
   <div class="ins"><div class="dot dot-info"></div><div><strong>Referência histórica do teto:</strong> Luiz batia 35% acumulado e 54% no melhor mês. É o benchmark interno do que é possível atingir nessa operação. Fechar gap de 16% → 27% (média) recupera ~8 vendas/mês sem precisar de mais leads.</div></div>
 </div>
 
 <!-- PLANO MAIO -->
 <div class="pane" id="pane-maio">
   <div class="sl">Plano comercial · maio 2026</div>
-  <div style="background:var(--amber-bg);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--amber-text);margin-bottom:16px;">
+
+  <!-- META PRINCIPAL DO MÊS -->
+  <div class="card" style="margin-bottom:18px;text-align:center;background:var(--green-bg);border-color:#86EFAC;padding:22px;">
+    <div style="font-size:11px;color:var(--green-text);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Meta do mês · vendas líquidas de Mentoria</div>
+    <div style="font-size:48px;font-weight:600;font-family:'DM Mono',monospace;color:var(--green-text);line-height:1;">30 vendas</div>
+  </div>
+
+  <div style="background:var(--amber-bg);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--amber-text);margin-bottom:18px;">
     <strong>Contexto de maio:</strong> Social Selling pausado (sem responsável), Aplicação Direta desligada, novo CPL em 19/05, Indicações com Luiz em piloto. Receita está concentrada em Otávio + Vanessa fechando reuniões geradas pelos canais restantes.
   </div>
 
-  <div class="sl">Metas dos closers · maio</div>
-  <div class="two">
-    <div class="card"><div class="ct">Otávio</div>
-      <div class="pr"><div class="pi" style="font-size:13px;color:var(--text2);">Reuniões realizadas</div>
-        <div class="pm"><div class="pn">60 <span>/ meta</span></div><div style="font-size:11px;color:var(--text3);">vs 52 abr · ritmo +15%</div></div>
+  <!-- DESDOBRAMENTO DA META -->
+  <div class="sl">Desdobramento · como chegar nas 30</div>
+  <div class="card" style="margin-bottom:18px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+      <div style="padding:8px 16px 8px 4px;border-right:1px solid var(--border);">
+        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Premissas</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.7;">
+          • Tx fechamento Otávio: <strong>22%</strong> (vs 15% abr · acima da média histórica de 21,4%)<br>
+          • Tx fechamento Vanessa: <strong>18%</strong> (vs 20% abr · ajuste com volume maior)<br>
+          • Distribuição reuniões: <strong>60% Otávio / 40% Vanessa</strong><br>
+          • No-show alvo: <strong>30%</strong> (vs 34% abr · meta histórica)
+        </div>
       </div>
-      <div class="pr"><div class="pi" style="font-size:13px;color:var(--text2);">Tx fechamento</div>
-        <div class="pm"><div class="pn">25% <span>/ meta</span></div><div style="font-size:11px;color:var(--text3);">vs 15% abr · resgatar patamar nov-dez/25</div></div>
-      </div>
-      <div class="pr" style="border-bottom:none;"><div class="pi" style="font-size:13px;color:var(--text2);">Vendas líquidas</div>
-        <div class="pm"><div class="pn">15 <span>/ meta</span></div><div style="font-size:11px;color:var(--text3);">vs 8 abr</div></div>
-      </div>
-    </div>
-    <div class="card"><div class="ct">Vanessa</div>
-      <div class="pr"><div class="pi" style="font-size:13px;color:var(--text2);">Reuniões realizadas</div>
-        <div class="pm"><div class="pn">40 <span>/ meta</span></div><div style="font-size:11px;color:var(--text3);">vs 25 abr · +60% volume</div></div>
-      </div>
-      <div class="pr"><div class="pi" style="font-size:13px;color:var(--text2);">Tx fechamento</div>
-        <div class="pm"><div class="pn">22% <span>/ meta</span></div><div style="font-size:11px;color:var(--text3);">vs 20% abr · evolução natural</div></div>
-      </div>
-      <div class="pr" style="border-bottom:none;"><div class="pi" style="font-size:13px;color:var(--text2);">Vendas líquidas</div>
-        <div class="pm"><div class="pn">9 <span>/ meta</span></div><div style="font-size:11px;color:var(--text3);">vs 5 abr</div></div>
+      <div style="padding:8px 4px 8px 16px;">
+        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Resultado</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.7;">
+          • Otávio: 88 reun × 22% = <strong>19 vendas</strong><br>
+          • Vanessa: 59 reun × 18% = <strong>11 vendas</strong><br>
+          • Reuniões realizadas: <strong>147</strong><br>
+          • Agendamentos (com 30% no-show): <strong>210</strong><br>
+          • <strong style="color:var(--green-text);">Total: 30 vendas ✓</strong>
+        </div>
       </div>
     </div>
   </div>
-  <div class="card" style="margin-bottom:16px;text-align:center;background:var(--green-bg);border-color:#86EFAC;">
-    <div style="font-size:11px;color:var(--green-text);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Total maio · time comercial</div>
-    <div style="font-size:32px;font-weight:600;font-family:'DM Mono',monospace;color:var(--green-text);">24 vendas</div>
-    <div style="font-size:12px;color:var(--green-text);margin-top:4px;">Otávio 15 + Vanessa 9 · meta 30 · gap residual de 6 vendas a serem absorvidas pelo CPL 19/05</div>
+
+  <!-- META DE AGENDAMENTOS -->
+  <div class="sl">Meta de agendamentos · 210 reuniões</div>
+  <div class="card" style="margin-bottom:18px;">
+    <div style="font-size:12px;color:var(--text2);margin-bottom:14px;">
+      Para chegar a 147 reuniões realizadas (com no-show de 30%), o time precisa agendar <strong>210 reuniões</strong> em maio. Distribuição por responsável:
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+      <div style="background:#FAFAF9;border:1px solid var(--border);border-radius:8px;padding:14px;">
+        <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Aline · 70%</div>
+        <div style="font-size:32px;font-weight:600;font-family:'DM Mono',monospace;line-height:1;">147</div>
+        <div style="font-size:11px;color:var(--text2);margin-top:6px;">agendamentos</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">Todos os canais · funil principal</div>
+      </div>
+      <div style="background:#FAFAF9;border:1px solid var(--border);border-radius:8px;padding:14px;">
+        <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Vanessa · 20%</div>
+        <div style="font-size:32px;font-weight:600;font-family:'DM Mono',monospace;line-height:1;">42</div>
+        <div style="font-size:11px;color:var(--text2);margin-top:6px;">agendamentos</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">Prospecção própria · leads CPL</div>
+      </div>
+      <div style="background:#FAFAF9;border:1px solid var(--border);border-radius:8px;padding:14px;">
+        <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Otávio · 10%</div>
+        <div style="font-size:32px;font-weight:600;font-family:'DM Mono',monospace;line-height:1;">21</div>
+        <div style="font-size:11px;color:var(--text2);margin-top:6px;">agendamentos</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">Prospecção própria · leads CPL</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- METAS INDIVIDUAIS -->
+  <div class="sl">Metas individuais · closers</div>
+  <div class="two">
+    <div class="card"><div class="ct">Otávio · 60% das reuniões</div>
+      <div class="pr"><div class="pi" style="font-size:13px;color:var(--text2);">Reuniões realizadas</div>
+        <div class="pm"><div class="pn">88 <span>/ meta</span></div><div style="font-size:11px;color:var(--text3);">vs 47 abr · +87% volume</div></div>
+      </div>
+      <div class="pr"><div class="pi" style="font-size:13px;color:var(--text2);">Tx fechamento</div>
+        <div class="pm"><div class="pn">22% <span>/ meta</span></div><div style="font-size:11px;color:var(--text3);">vs 15% abr · acima da média histórica de 21,4%</div></div>
+      </div>
+      <div class="pr" style="border-bottom:none;"><div class="pi" style="font-size:13px;color:var(--text2);">Vendas líquidas</div>
+        <div class="pm"><div class="pn">19 <span>/ meta</span></div><div style="font-size:11px;color:var(--text3);">vs 8 abr · +138%</div></div>
+      </div>
+    </div>
+    <div class="card"><div class="ct">Vanessa · 40% das reuniões</div>
+      <div class="pr"><div class="pi" style="font-size:13px;color:var(--text2);">Reuniões realizadas</div>
+        <div class="pm"><div class="pn">59 <span>/ meta</span></div><div style="font-size:11px;color:var(--text3);">vs 27 abr · +119% volume</div></div>
+      </div>
+      <div class="pr"><div class="pi" style="font-size:13px;color:var(--text2);">Tx fechamento</div>
+        <div class="pm"><div class="pn">18% <span>/ meta</span></div><div style="font-size:11px;color:var(--text3);">vs 20% abr · ajuste com volume maior</div></div>
+      </div>
+      <div class="pr" style="border-bottom:none;"><div class="pi" style="font-size:13px;color:var(--text2);">Vendas líquidas</div>
+        <div class="pm"><div class="pn">11 <span>/ meta</span></div><div style="font-size:11px;color:var(--text3);">vs 5 abr · +120%</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:18px;background:#FAFAF9;">
+    <div style="font-size:12px;color:var(--text2);line-height:1.7;">
+      <strong>Premissas das taxas de fechamento:</strong> 22% e 18% são patamares atingíveis — Otávio fica acima da própria média histórica acumulada (21,4%) e Vanessa ajusta levemente para baixo dos 20% do 1º mês para acomodar volume maior. Não dependem de pico atípico.<br>
+      <strong>Premissa de volume:</strong> 147 reuniões realizadas em maio é salto grande (+91% vs 77 abr). Depende crítico de Aline entregar os 147 agendamentos + Vanessa/Otávio prospectarem 63 dos leads do CPL.
+    </div>
   </div>
 
   <hr class="d">
@@ -746,38 +844,15 @@
   <div class="ins"><div class="dot dot-info"></div><div><strong>SLA de agendamento de 7 dias:</strong> não agendar reuniões com mais de 7 dias de antecedência. Lead esfria no intervalo — política preventiva contra no-show.</div></div>
   <div class="ins"><div class="dot dot-info"></div><div><strong>Confirmação obrigatória 24h antes:</strong> SDR liga ou manda WhatsApp confirmando reunião. Quem não confirmar tem agendamento desmarcado e contato substituído.</div></div>
   <div class="ins"><div class="dot dot-info"></div><div><strong>Meta no-show:</strong> reduzir de 34% (abril) para 25% (abaixo da média histórica de 28%). Cada 10pp de redução = ~3 vendas/mês adicionais.</div></div>
-  <div class="ins"><div class="dot dot-info"></div><div><strong>Vanessa: aumento de carga programado:</strong> de 25 para 40 reuniões/mês. Ela é o melhor ROI marginal hoje (50% conv em S4, 20% acumulada). Capacidade ociosa.</div></div>
-  <div class="ins"><div class="dot dot-info"></div><div><strong>Otávio: foco em fechamento, não volume:</strong> 47 reuniões em abril foram suficientes. Próximo mês, mantê-lo na média e investir em treinamento de objeções para resgatar conversão para 25%+.</div></div>
-
-  <hr class="d">
-  <div class="sl">CPL 19/05 · ambição</div>
-  <div class="card" style="margin-bottom:16px;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-      <div>
-        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Referência · CPL 05/01</div>
-        <div style="font-size:28px;font-weight:600;font-family:'DM Mono',monospace;line-height:1;">17 vendas</div>
-        <div style="font-size:12px;color:var(--text2);margin-top:6px;">789 leads · R$ 19,4k investidos · CAC R$ 1.142</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:4px;">Foi a campanha mais bem-sucedida da operação. Otávio fechou 32% naquele mês.</div>
-      </div>
-      <div>
-        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Ambição · CPL 19/05</div>
-        <div style="font-size:28px;font-weight:600;font-family:'DM Mono',monospace;line-height:1;color:var(--green-text);">≥ 17 vendas</div>
-        <div style="font-size:12px;color:var(--text2);margin-top:6px;">Repetir e idealmente superar com aprendizados</div>
-        <div style="font-size:11px;color:var(--text3);margin-top:4px;">Janela de 12 dias úteis (19-30/05) · garantir SDR pronto e closers em ritmo</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ins"><div class="dot dot-ok"></div><div><strong>Por que dá para superar 17:</strong> em jan/26 a operação tinha Otávio sozinho como closer principal. Em maio temos Otávio + Vanessa = capacidade dobrada para receber leads quentes do CPL.</div></div>
-  <div class="ins"><div class="dot dot-warn"></div><div><strong>Para superar, é preciso:</strong> (a) reabrir mesmas criações que funcionaram em jan/26, (b) ajustar segmentação para perfil de mentorado-tipo, (c) ter closers prontos para receber pico de demanda na semana seguinte ao lançamento, (d) SDR dimensionado para o volume.</div></div>
-  <div class="ins"><div class="dot dot-info"></div><div><strong>Cenário stretch:</strong> 20 vendas no CPL + 24 dos closers regulares = 44 vendas. Bate meta com folga e abre espaço para investir em junho com mais previsibilidade.</div></div>
+  <div class="ins"><div class="dot dot-info"></div><div><strong>Vanessa: aumento de carga programado:</strong> de 27 para 59 reuniões/mês (+119%). Inclui 42 agendamentos via prospecção própria de leads CPL.</div></div>
+  <div class="ins"><div class="dot dot-info"></div><div><strong>Otávio: volume + treinamento de fechamento:</strong> precisa subir de 47 para 88 reuniões/mês E levar conversão de 15% (abr) para 22%. Inclui 21 agendamentos via prospecção própria de leads CPL. Treinamento de objeções priorizado nas primeiras 2 semanas do mês.</div></div>
 
   <hr class="d">
   <div class="sl">Resumo executivo · maio</div>
-  <div class="ins"><div class="dot dot-info"></div><div><strong>Caminho mínimo para 30 vendas:</strong> 24 da operação regular (Otávio 15 + Vanessa 9) + 6 do CPL 19/05. Conservador.</div></div>
-  <div class="ins"><div class="dot dot-ok"></div><div><strong>Caminho realista para 30+:</strong> 24 da operação + 17+ do CPL = 41+ vendas. Possível se executar como em jan/26.</div></div>
-  <div class="ins"><div class="dot dot-bad"></div><div><strong>Risco:</strong> sem Social Selling e sem Aplicação Direta, a operação fica com menos vetores. Se o CPL 19/05 sub-perfomar, a meta de 30 fica dependente exclusivamente do desempenho dos closers — o que historicamente é volátil.</div></div>
-  <div class="ins"><div class="dot dot-warn"></div><div><strong>Plano B se CPL não vier:</strong> reativar Social Selling com responsável temporário (mesmo que freelancer/parceiro), ou ressuscitar Aplicação Direta com mais qualificação. Decisão até dia 25/05 olhando os primeiros 6 dias do CPL.</div></div>
+  <div class="ins"><div class="dot dot-info"></div><div><strong>Meta:</strong> 30 vendas líquidas de Mentoria — Otávio 19 + Vanessa 11. Suportada por 210 agendamentos (Aline 147 + Vanessa 42 + Otávio 21).</div></div>
+  <div class="ins"><div class="dot dot-warn"></div><div><strong>Maior risco:</strong> volume de reuniões. Saltar de 77 para 147 reuniões (+91%) exige Aline entregar 147 agendamentos (vs 65 em abr) e closers prospectarem 63 reuniões via leads CPL. Sem isso, gap de volume trava o resto da equação.</div></div>
+  <div class="ins"><div class="dot dot-bad"></div><div><strong>Risco secundário:</strong> sem Social Selling e sem Aplicação Direta, a operação fica com menos vetores de demanda. Se o CPL 19/05 sub-performar, falta um plano B de geração.</div></div>
+  <div class="ins"><div class="dot dot-warn"></div><div><strong>Plano B se CPL não vier:</strong> reativar Social Selling com responsável temporário (freelancer/parceiro) ou retomar Aplicação Direta com mais qualificação. Decisão até dia 25/05 olhando os primeiros 6 dias do CPL.</div></div>
 </div>
 
 <script>
