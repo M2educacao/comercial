@@ -95,6 +95,7 @@
   <div class="tab" onclick="showTab('comp')">Compilado</div>
   <div class="tab" onclick="showTab('hist')">Histórico</div>
   <div class="tab" onclick="showTab('maio')">Plano Maio</div>
+  <div class="tab" onclick="showTab('acomp')">Acompanhamento Maio</div>
 </div>
 
 <!-- S1 -->
@@ -855,9 +856,259 @@
   <div class="ins"><div class="dot dot-warn"></div><div><strong>Plano B se CPL não vier:</strong> reativar Social Selling com responsável temporário (freelancer/parceiro) ou retomar Aplicação Direta com mais qualificação. Decisão até dia 25/05 olhando os primeiros 6 dias do CPL.</div></div>
 </div>
 
+<!-- ACOMPANHAMENTO MAIO -->
+<div class="pane" id="pane-acomp">
+  <style>
+    .prog-wrap{margin-top:8px;}
+    .prog-bar{height:6px;background:var(--surface2);border-radius:3px;overflow:hidden;}
+    .prog-fill{height:100%;border-radius:3px;}
+    .prog-meta{display:flex;justify-content:space-between;align-items:baseline;font-size:11px;color:var(--text3);margin-top:5px;font-family:'DM Mono',monospace;}
+    .prog-meta strong{color:var(--text);font-weight:600;}
+    .real-badge{display:inline-block;font-size:10px;background:var(--surface2);color:var(--text2);padding:2px 7px;border-radius:10px;margin-left:8px;font-family:'DM Mono',monospace;font-weight:500;letter-spacing:.02em;}
+    .real-tag{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;font-weight:600;margin-bottom:6px;display:block;}
+  </style>
+
+  <div class="sl">Acompanhamento · maio 2026</div>
+  <div style="background:var(--blue-bg);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--blue-text);margin-bottom:18px;">
+    <strong>Status até 09/05/2026 · 5 dias úteis decorridos de 20 totais (25% do mês).</strong> Cada bloco mostra a meta original do plano e o realizado até a data. Pace ideal proporcional aos dias úteis = 25% das metas mensais.
+  </div>
+
+  <!-- META PRINCIPAL DO MÊS COM PROGRESSO -->
+  <div class="card" style="margin-bottom:18px;text-align:center;background:var(--green-bg);border-color:#86EFAC;padding:22px;">
+    <div style="font-size:11px;color:var(--green-text);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;">Meta do mês · vendas líquidas de Mentoria</div>
+    <div style="display:flex;align-items:baseline;justify-content:center;gap:14px;">
+      <div style="font-size:48px;font-weight:600;font-family:'DM Mono',monospace;color:var(--green-text);line-height:1;">6</div>
+      <div style="font-size:24px;color:var(--green-text);opacity:.7;font-family:'DM Mono',monospace;">/ 30</div>
+    </div>
+    <div style="margin-top:14px;max-width:400px;margin-left:auto;margin-right:auto;">
+      <div class="prog-bar" style="background:rgba(34,197,94,0.15);">
+        <div class="prog-fill" style="width:20%;background:var(--green-text);"></div>
+      </div>
+      <div class="prog-meta" style="color:var(--green-text);">
+        <span><strong>20%</strong> da meta</span><span>pace ideal: 25% (7,5)</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--amber-bg);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--amber-text);margin-bottom:18px;">
+    <strong>Contexto de maio:</strong> Social Selling pausado (sem responsável), Aplicação Direta desligada, novo CPL em 19/05, Indicações com Luiz em piloto. Receita está concentrada em Otávio + Vanessa fechando reuniões geradas pelos canais restantes.
+  </div>
+
+  <!-- DESDOBRAMENTO COM REALIZADO -->
+  <div class="sl">Desdobramento · realizado vs meta</div>
+  <div class="card" style="margin-bottom:18px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+      <div style="padding:8px 16px 8px 4px;border-right:1px solid var(--border);">
+        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Premissas (do plano)</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.7;">
+          • Tx fechamento Otávio: <strong>22%</strong> <span class="real-badge">real até 09/05: 33% (4/12) · exclui venda do Lançamento (reun de abr)</span><br>
+          • Tx fechamento Vanessa: <strong>18%</strong> <span class="real-badge">real até 09/05: 20% (1/5) · base pequena</span><br>
+          • Distribuição reuniões: <strong>60% Otávio / 40% Vanessa</strong><br>
+          • No-show alvo: <strong>30%</strong> <span class="real-badge">real até 09/05: ~6% (1 de 18)</span>
+        </div>
+      </div>
+      <div style="padding:8px 4px 8px 16px;">
+        <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Resultado (meta · realizado)</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.7;">
+          • Otávio: <strong>19 vendas</strong> <span style="color:var(--green-text);font-family:'DM Mono',monospace;font-weight:600;">· 5 (26%)</span><br>
+          • Vanessa: <strong>11 vendas</strong> <span style="color:var(--amber-text);font-family:'DM Mono',monospace;font-weight:600;">· 1 (9%)</span><br>
+          • Reuniões realizadas: <strong>147</strong> <span style="color:var(--red-text);font-family:'DM Mono',monospace;font-weight:600;">· 17 (12%)</span><br>
+          • Agendamentos: <strong>210</strong> <span style="color:var(--red-text);font-family:'DM Mono',monospace;font-weight:600;">· 15 (7%)</span><br>
+          • <strong style="color:var(--green-text);">Total: 30 vendas</strong> <span style="color:var(--amber-text);font-family:'DM Mono',monospace;font-weight:600;">· 6 (20%)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- META DE AGENDAMENTOS COM PROGRESSO -->
+  <div class="sl">Meta de agendamentos · 15 de 210 (7%)</div>
+  <div class="card" style="margin-bottom:18px;">
+    <div style="font-size:12px;color:var(--text2);margin-bottom:14px;">
+      Agendamentos <strong>realizados nesta semana</strong> (independente da data da reunião agendada). Pace ideal aos 25% do mês: 52 agendamentos. Anna (3 agendamentos) contabilizada dentro de Aline — apoio ao SDR principal.
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+      <div style="background:#FAFAF9;border:1px solid var(--border);border-radius:8px;padding:14px;">
+        <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Aline · 70% <span style="color:var(--text2);font-weight:500;text-transform:none;letter-spacing:0;">(c/ apoio Anna)</span></div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <div style="font-size:32px;font-weight:600;font-family:'DM Mono',monospace;line-height:1;">12</div>
+          <div style="font-size:14px;color:var(--text3);font-family:'DM Mono',monospace;">/ 147</div>
+        </div>
+        <div class="prog-wrap">
+          <div class="prog-bar"><div class="prog-fill" style="width:8%;background:var(--red-text);"></div></div>
+          <div class="prog-meta"><span><strong>8%</strong></span><span>pace 37 · -25</span></div>
+        </div>
+        <div style="font-size:11px;color:var(--text3);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">Aline 9 + Anna 3 · todos os canais</div>
+      </div>
+      <div style="background:#FAFAF9;border:1px solid var(--border);border-radius:8px;padding:14px;">
+        <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Vanessa · 20%</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <div style="font-size:32px;font-weight:600;font-family:'DM Mono',monospace;line-height:1;">3</div>
+          <div style="font-size:14px;color:var(--text3);font-family:'DM Mono',monospace;">/ 42</div>
+        </div>
+        <div class="prog-wrap">
+          <div class="prog-bar"><div class="prog-fill" style="width:7%;background:var(--red-text);"></div></div>
+          <div class="prog-meta"><span><strong>7%</strong></span><span>pace 11 · -8</span></div>
+        </div>
+        <div style="font-size:11px;color:var(--text3);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">Prospecção própria · leads CPL</div>
+      </div>
+      <div style="background:#FAFAF9;border:1px solid var(--border);border-radius:8px;padding:14px;">
+        <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Otávio · 10%</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <div style="font-size:32px;font-weight:600;font-family:'DM Mono',monospace;line-height:1;color:var(--red-text);">0</div>
+          <div style="font-size:14px;color:var(--text3);font-family:'DM Mono',monospace;">/ 21</div>
+        </div>
+        <div class="prog-wrap">
+          <div class="prog-bar"><div class="prog-fill" style="width:0%;background:var(--red-text);"></div></div>
+          <div class="prog-meta"><span style="color:var(--red-text);"><strong>0%</strong></span><span>pace 5 · não iniciou</span></div>
+        </div>
+        <div style="font-size:11px;color:var(--text3);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);">Prospecção própria · leads CPL</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- METAS INDIVIDUAIS COM PROGRESSO -->
+  <div class="sl">Metas individuais · realizado vs meta</div>
+  <div class="two">
+    <div class="card"><div class="ct">Otávio · 60% das reuniões</div>
+      <div class="pr">
+        <div class="pi" style="font-size:13px;color:var(--text2);">Reuniões realizadas</div>
+        <div class="pm">
+          <div class="pn" style="display:flex;align-items:baseline;gap:6px;"><span>12</span><span style="font-size:14px;color:var(--text3);">/ 88</span></div>
+          <div class="prog-wrap" style="width:160px;">
+            <div class="prog-bar"><div class="prog-fill" style="width:14%;background:var(--red-text);"></div></div>
+            <div class="prog-meta"><span><strong>14%</strong></span><span>pace 22 · -10</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pr">
+        <div class="pi" style="font-size:13px;color:var(--text2);">Tx fechamento</div>
+        <div class="pm">
+          <div class="pn" style="display:flex;align-items:baseline;gap:6px;"><span>33%</span><span style="font-size:14px;color:var(--text3);">/ 22%</span></div>
+          <div style="font-size:11px;color:var(--text3);text-align:right;margin-top:4px;font-family:'DM Mono',monospace;">4 vendas em 12 reun de maio · 1 venda extra de reun de abril (Lançamento)</div>
+        </div>
+      </div>
+      <div class="pr">
+        <div class="pi" style="font-size:13px;color:var(--text2);">Vendas líquidas</div>
+        <div class="pm">
+          <div class="pn" style="display:flex;align-items:baseline;gap:6px;"><span>5</span><span style="font-size:14px;color:var(--text3);">/ 19</span></div>
+          <div class="prog-wrap" style="width:160px;">
+            <div class="prog-bar"><div class="prog-fill" style="width:26%;background:var(--green-text);"></div></div>
+            <div class="prog-meta"><span style="color:var(--green-text);"><strong>26%</strong></span><span>pace 5 · ✓</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pr" style="border-bottom:none;">
+        <div class="pi" style="font-size:13px;color:var(--text2);">Reuniões agendadas (na agenda)</div>
+        <div class="pm">
+          <div class="pn" style="display:flex;align-items:baseline;gap:6px;"><span>13</span><span style="font-size:11px;color:var(--text3);">esta semana</span></div>
+          <div style="font-size:11px;color:var(--text3);text-align:right;margin-top:4px;font-family:'DM Mono',monospace;">12 realizadas · 1 não realizada</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card"><div class="ct">Vanessa · 40% das reuniões</div>
+      <div class="pr">
+        <div class="pi" style="font-size:13px;color:var(--text2);">Reuniões realizadas</div>
+        <div class="pm">
+          <div class="pn" style="display:flex;align-items:baseline;gap:6px;"><span>5</span><span style="font-size:14px;color:var(--text3);">/ 59</span></div>
+          <div class="prog-wrap" style="width:160px;">
+            <div class="prog-bar"><div class="prog-fill" style="width:8%;background:var(--red-text);"></div></div>
+            <div class="prog-meta"><span><strong>8%</strong></span><span>pace 15 · -10</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pr">
+        <div class="pi" style="font-size:13px;color:var(--text2);">Tx fechamento</div>
+        <div class="pm">
+          <div class="pn" style="display:flex;align-items:baseline;gap:6px;"><span>20%</span><span style="font-size:14px;color:var(--text3);">/ 18%</span></div>
+          <div style="font-size:11px;color:var(--text3);text-align:right;margin-top:4px;font-family:'DM Mono',monospace;">1 venda em 5 reun · base pequena</div>
+        </div>
+      </div>
+      <div class="pr">
+        <div class="pi" style="font-size:13px;color:var(--text2);">Vendas líquidas</div>
+        <div class="pm">
+          <div class="pn" style="display:flex;align-items:baseline;gap:6px;"><span>1</span><span style="font-size:14px;color:var(--text3);">/ 11</span></div>
+          <div class="prog-wrap" style="width:160px;">
+            <div class="prog-bar"><div class="prog-fill" style="width:9%;background:var(--red-text);"></div></div>
+            <div class="prog-meta"><span style="color:var(--red-text);"><strong>9%</strong></span><span>pace 3 · -2</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pr" style="border-bottom:none;">
+        <div class="pi" style="font-size:13px;color:var(--text2);">Reuniões agendadas (na agenda)</div>
+        <div class="pm">
+          <div class="pn" style="display:flex;align-items:baseline;gap:6px;"><span>5</span><span style="font-size:11px;color:var(--text3);">esta semana</span></div>
+          <div style="font-size:11px;color:var(--text3);text-align:right;margin-top:4px;font-family:'DM Mono',monospace;">5 realizadas · 0 no-show</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VENDAS REALIZADAS · DETALHAMENTO -->
+  <div class="card" style="margin-bottom:18px;background:#FAFAF9;">
+    <span class="real-tag">Vendas realizadas até 07/05</span>
+    <div style="display:grid;grid-template-columns:60px 1.5fr 1fr 1.4fr;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:11px;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.05em;">
+      <div>#</div><div>Canal</div><div>Closer</div><div>Observação</div>
+    </div>
+    <div style="display:grid;grid-template-columns:60px 1.5fr 1fr 1.4fr;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;align-items:center;">
+      <div style="font-family:'DM Mono',monospace;color:var(--text3);">1</div>
+      <div><strong>Lançamento</strong></div>
+      <div>Otávio</div>
+      <div style="color:var(--text3);font-size:12px;">Lançamento de abril · venda concretizada em maio</div>
+    </div>
+    <div style="display:grid;grid-template-columns:60px 1.5fr 1fr 1.4fr;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;align-items:center;">
+      <div style="font-family:'DM Mono',monospace;color:var(--text3);">2</div>
+      <div><strong>Bio Instagram</strong></div>
+      <div>Vanessa</div>
+      <div style="color:var(--text3);font-size:12px;">—</div>
+    </div>
+    <div style="display:grid;grid-template-columns:60px 1.5fr 1fr 1.4fr;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;align-items:center;">
+      <div style="font-family:'DM Mono',monospace;color:var(--text3);">3</div>
+      <div><strong>Check-up</strong></div>
+      <div>Otávio</div>
+      <div style="color:var(--text3);font-size:12px;">—</div>
+    </div>
+    <div style="display:grid;grid-template-columns:60px 1.5fr 1fr 1.4fr;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;align-items:center;">
+      <div style="font-family:'DM Mono',monospace;color:var(--text3);">4</div>
+      <div><strong>Formulário Meta</strong></div>
+      <div>Otávio</div>
+      <div style="color:var(--text3);font-size:12px;">—</div>
+    </div>
+    <div style="display:grid;grid-template-columns:60px 1.5fr 1fr 1.4fr;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;align-items:center;">
+      <div style="font-family:'DM Mono',monospace;color:var(--text3);">5</div>
+      <div><strong>Formulário Meta</strong></div>
+      <div>Otávio</div>
+      <div style="color:var(--text3);font-size:12px;">—</div>
+    </div>
+    <div style="display:grid;grid-template-columns:60px 1.5fr 1fr 1.4fr;gap:8px;padding:8px 0;font-size:13px;align-items:center;">
+      <div style="font-family:'DM Mono',monospace;color:var(--text3);">6</div>
+      <div><strong>Check-up</strong></div>
+      <div>Otávio</div>
+      <div style="color:var(--text3);font-size:12px;">—</div>
+    </div>
+  </div>
+
+  <hr class="d">
+  <div class="sl">Leitura · até 09/05 (5 dias úteis)</div>
+  <div class="ins"><div class="dot dot-ok"></div><div><strong>Vendas no pace (6/30 · 20%):</strong> diff de -1,5 vs ideal (7,5). Otávio carregando (5/19 = 26%, acima do pace de 25%) — descontando a venda do Lançamento (reun de abr), tx de fechamento real é 33% (4/12) vs meta 22%. Vanessa em 1/5 = 20% (vs meta 18%) — mas só fechou 1 vez ainda, base pequena.</div></div>
+  <div class="ins"><div class="dot dot-warn"></div><div><strong>Vanessa abaixo do pace de vendas (1/11 = 9%):</strong> diff de -2 vendas vs ideal. Tx ainda acima da meta (20%), mas precisa mais reuniões — só 5 esta semana e meta de 15 acumuladas a esta altura.</div></div>
+  <div class="ins"><div class="dot dot-bad"></div><div><strong>Reuniões realizadas em alerta crítico (17/147 · 12%):</strong> pace ideal era 37. Diff de -20 reuniões já. Em projeção linear, mês fecharia em ~68 reuniões (46% da meta) — o que travaria as 30 vendas mesmo com tx alta de fechamento.</div></div>
+  <div class="ins"><div class="dot dot-bad"></div><div><strong>Agendamentos é o gargalo principal (15/210 · 7%):</strong> Aline (com Anna) em 12/147 (8%) e Otávio em 0/21 (não iniciou prospecção). Pace ideal acumulado é 52 — diff de -37 agendamentos. Sem ataque imediato a esse número, a meta de 30 vendas fica matematicamente comprometida.</div></div>
+  <div class="ins"><div class="dot dot-ok"></div><div><strong>No-show real até agora: ~6%</strong> (1 reunião não realizada de 18 agendadas) — muito abaixo da meta de 30%. Sinal positivo do efeito SLA + confirmação 24h. Se mantido o mês inteiro, libera ~10pp de eficiência adicional do funil.</div></div>
+  <div class="ins"><div class="dot dot-info"></div><div><strong>CPL 19/05 ainda não rodou:</strong> 7 dias úteis até o lançamento. O segundo evento de Lançamento concentra ~26% do volume planejado de leads — momento de inflexão chegando.</div></div>
+
+  <hr class="d">
+  <div class="sl">Ações imediatas · próximos 5 dias úteis</div>
+  <div class="ins"><div class="dot dot-bad"></div><div><strong>Aline (c/ apoio Anna):</strong> cadência atual é ~2,4/dia útil. Precisa subir para ~9/dia útil pra ainda chegar perto da meta de 147. Revisar tempo dedicado por canal e priorizar leads quentes (Form Meta + Bio Insta + Indicações). Anna ajudando mostra que apoio extra está disponível — usar.</div></div>
+  <div class="ins"><div class="dot dot-bad"></div><div><strong>Otávio:</strong> ainda em 0 agendamentos próprios. 5 dias úteis perdidos da meta de 21 = ~25% do tempo já consumido sem entregar. Cada dia adicional = -1 agendamento. Bloquear janela diária para prospecção.</div></div>
+  <div class="ins"><div class="dot dot-warn"></div><div><strong>Vanessa:</strong> 3 agendamentos próprios na 1ª semana = pace de 12/mês (vs meta 42). Precisa acelerar — leads CPL chegando dia 19/05, mas até lá pode trabalhar leads de outras fontes.</div></div>
+  <div class="ins"><div class="dot dot-info"></div><div><strong>Indicações (Luiz):</strong> meta 90 leads no mês. Verificar quantos chegaram nos primeiros 5 dias úteis — se abaixo de 22, acelerar pedidos de indicação esta semana.</div></div>
+  <div class="ins"><div class="dot dot-info"></div><div><strong>Próxima atualização:</strong> revisar este painel toda 2ª-feira pela manhã. Decisão de plano B (CPL underperformando) na semana de 25/05 com 6 dias do CPL rodando.</div></div>
+</div>
+
 <script>
 function showTab(id){
-  const tabs=['s1','s2','s3','s4','comp','hist','maio'];
+  const tabs=['s1','s2','s3','s4','comp','hist','maio','acomp'];
   document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',tabs[i]===id));
   document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('active',p.id==='pane-'+id));
   if(id==='comp'&&!window._c)buildCharts();
